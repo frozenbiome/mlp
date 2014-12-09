@@ -1,9 +1,9 @@
 {
   "name": "mlp",
   "version": "0.0.0",
-  "homepage": "https://github.com/brianjscoles/mlp",
+  "homepage": "https://github.com/frozenbiome/mlp",
   "authors": [
-    "(Silver Octopus Labs)"
+    "Grant Wu, David Kae, Evan Spiler, Alex Hawkins"
   ],
   "description": "mlp",
   "main": "app.js",

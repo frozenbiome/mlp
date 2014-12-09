@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/silver-octopus-labs/mlp"
+    "url": "https://github.com/frozenbiome/mlp"
   },
-  "author": "silver octopus labs",
+  "author": "Grant Wu, David Kae, Evan Spiler, Alex Hawkins",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/silver-octopus-labs/mlp/issues"
+    "url": "https://github.com/frozenbiome/mlp/issues"
   },
-  "homepage": "https://github.com/silver-octopus-labs/mlp",
+  "homepage": "https://github.com/frozenbiome/mlp",
   "dependencies": {
     "angular-file-upload-shim": "^1.6.4",
     "angular-ui-router": "^0.2.11",
