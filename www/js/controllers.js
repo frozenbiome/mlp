@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('voto.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
