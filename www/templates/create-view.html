@@ -4,8 +4,35 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
+
 <ion-view view-title="CreateView">
-  <ion-content class="padding">
-    <h1>Create View</h1>
+  <ion-content>
+
+	<div class="list">
+	  <label class="item item-input">
+	    <input type="text" placeholder="Your Prompt (e.g. Birds of Prey)">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Room Size (3)">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="End Time (30 min)">
+	  </label>
+	  <label class="item item-input item-select">
+	    <div class="input-label">
+	      Game Mode
+	    </div>
+	    <select>
+	      <option selected>Public</option>
+	      <option>Private</option>
+	    </select>
+	  </label>
+
+	<div class="padding">
+  	  <button class="button button-block button-balanced">
+  	  	Start
+  	  </button>
+	</div>
+
   </ion-content>
 </ion-view>
