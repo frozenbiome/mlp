@@ -3,9 +3,7 @@ angular.module('voto.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('Create', function() {
-  // Might use a resource here that returns a JSON array
-
+.factory('Create', function($location) {
   // Some fake testing data
   var games = [
     { prompt: 'Dogs', creator: 'Scruff McGruff' },
@@ -19,4 +17,9 @@ angular.module('voto.services', [])
       return games;
     }
   }
+
+    // get: function(friendId) {
+    //   // Simple index lookup
+    //   return friends[friendId];
+    // }
 });
