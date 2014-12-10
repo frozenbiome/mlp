@@ -10,23 +10,23 @@ angular.module('voto.services', [])
     return $http.get("http://10.8.16.232:8000/api/prompt");
   }
 
-  var games = [{
-    prompt: 'Dogs',
-    creator: 'Scruff McGruff',
-    id: 1
-  }, {
-    prompt: 'War',
-    creator: 'G.I. Joe',
-    id: 2
-  }, {
-    prompt: 'Hair',
-    creator: 'Miss Frizzle',
-    id: 3
-  }, {
-    prompt: 'Pokemon',
-    creator: 'Ash Ketchum',
-    id: 4
-  }];
+  //var games = [{
+    //prompt: 'Dogs',
+    //creator: 'Scruff McGruff',
+    //id: 1
+  //}, {
+    //prompt: 'War',
+    //creator: 'G.I. Joe',
+    //id: 2
+  //}, {
+    //prompt: 'Hair',
+    //creator: 'Miss Frizzle',
+    //id: 3
+  //}, {
+    //prompt: 'Pokemon',
+    //creator: 'Ash Ketchum',
+    //id: 4
+  //}];
 
   return {
     getAllGames: getAllGames,
