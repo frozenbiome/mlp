@@ -38,9 +38,19 @@ console.log('Server listening on ' + port);
 app
   .use(express.static(path.resolve(__dirname + '/../client/')))
   .use(authRouter)
-  .use('/media', auth.checkIfLoggedIn, mediaRouter)
-  .use('/api', auth.checkIfLoggedIn, apiRouter)
+  //Console logging for debugging purposes
+  //.use('/media', auth.checkIfLoggedIn, mediaRouter)
+  //.use('/api', auth.checkIfLoggedIn, apiRouter)
+  .use('/media', function(req,res) {
+    console.log("REQ TO MEDIA ROUTER: ", req.url);
+    mediaRouter(req, res);
+  })
+  .use('/api', function(req,res) {
+    console.log("REQ TO API ROUTER: ", req.url);
+    apiRouter(req, res);
+  })
   .use('*', function (req, res) {
+    console.log("PATH NOT FOUND")
     res.status(404).end();
   })
   .listen(port);

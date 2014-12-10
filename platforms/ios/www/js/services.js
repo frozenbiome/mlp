@@ -3,6 +3,21 @@ angular.module('voto.services', [])
 /**
  * A simple example service that returns some data.
  */
+<<<<<<< HEAD
+=======
+
+.factory('Main', function($http) {
+  var getAllPromptsData = function () {
+    return $http.get('http://10.8.16.232:8000/api/prompt');
+  };
+  return {
+    getAllPromptsData: getAllPromptsData
+  }
+})
+
+.factory('Create', function() {
+  // Might use a resource here that returns a JSON array
+>>>>>>> Main view scaffold and controller. Gets all prompts from Grant's IP.
 
 .factory('Main', function($location) {
   // Some fake testing data
