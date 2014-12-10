@@ -7,8 +7,8 @@
 
     <ion-list>
       <ion-item ng-repeat="game in games" type="item-text-wrap"href="#/tab/main/{{game.id}}">
-        Prompt: {{game.prompt}}
-        <br> Created by: {{game.creator}}
+        Prompt: {{game.title}}
+        <br> Created by: {{game.user.email}}
       </ion-item>
     </ion-list>
     <!--PLAYING GAMES-->
@@ -17,8 +17,8 @@
     </div>
     <ion-list>
       <ion-item ng-repeat="game in games" type="item-text-wrap" href="#/tab/main/{{game.id}}">
-        Prompt: {{game.prompt}}
-        <br> Created by: {{game.creator}}
+        Prompt: {{game.title}}
+        <br> Created by: {{game.user.email}}
       </ion-item>
     </ion-list>
     <!--FINISHED-->
@@ -27,8 +27,8 @@
     </div>
     <ion-list>
       <ion-item ng-repeat="game in games" type="item-text-wrap" href="#/tab/main/{{game.id}}">
-        Prompt: {{game.prompt}}
-        <br> Created by: {{game.creator}}
+        Prompt: {{game.title}}
+        <br> Created by: {{game.user.email}}
       </ion-item>
     </ion-list>
 

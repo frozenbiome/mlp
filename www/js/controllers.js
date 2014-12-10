@@ -7,9 +7,9 @@ angular.module('voto.controllers', [])
     //return (string.length < limit) ? string : string.substr(0, limit) + "...";
   //};
   //
-  Main.getAllPromptsData()
+  Main.getAllGames()
     .then(function(res) {
-      $scope.prompts = res.data.all;
+      $scope.games = res.data.all;
       console.log("getAllPrompts: ", res.data);
     });
 })

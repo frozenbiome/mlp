@@ -4,8 +4,12 @@ angular.module('voto.services', [])
  * A simple example service that returns some data.
  */
 
-.factory('Main', function($location) {
+.factory('Main', function($location, $http) {
   // Some fake testing data
+  var getAllGames = function() {
+    return $http.get("http://10.8.16.232:8000/api/prompt");
+  }
+
   var games = [{
     prompt: 'Dogs',
     creator: 'Scruff McGruff',
@@ -25,6 +29,7 @@ angular.module('voto.services', [])
   }];
 
   return {
+    getAllGames: getAllGames,
     all: function() {
       return games;
     }
