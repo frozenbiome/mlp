@@ -1,10 +1,31 @@
 <ion-view view-title="Create">
   <ion-content>
+
+  	<div class="button-bar">
+  	  <a class="button button-assertive" href="#/tab/create/view">Create New Game</a>
+	  </div>
+	
+    <div class="item item-divider">
+      Private Games
+ 	</div>
     <ion-list>
-<!--       <ion-item ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-        {{friend.name}}
-      </ion-item> -->
-      <h1>Create</h1>
+      <ion-item ng-repeat="game in games" type="item-text-wrap">
+      	Prompt: {{game.prompt}}
+      	<br>
+      	Created by: {{game.creator}}
+      </ion-item>
     </ion-list>
+
+    <div class="item item-divider">
+      Public Games
+ 	</div>
+ 	<ion-list ng-repeat="game in games" type="item-text-wrap">
+ 	  <ion-item>
+      	Prompt: {{game.prompt}}
+      	<br>
+      	Created by: {{game.creator}}
+      </ion-item>
+    </ion-list>
+
   </ion-content>
 </ion-view>

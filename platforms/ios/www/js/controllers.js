@@ -1,15 +1,17 @@
 angular.module('voto.controllers', [])
 
-.controller('MainCtrl', function($scope) {})
+.controller('MainCtrl', function($scope, Main) {
+  $scope.games = Main.all();
+})
 
-.controller('CreateCtrl', function($scope) {})
+.controller('CreateCtrl', function($scope, Create) {
+  $scope.games = Create.all();
+})
 
-// .controller('FriendsCtrl', function($scope, Friends) {
-//   $scope.friends = Friends.all();
-// })
+.controller('CreateViewCtrl', function($scope, $stateParams, Create) {
 
-// .controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-//   $scope.friend = Friends.get($stateParams.friendId);
-// })
+})
 
-.controller('AccountCtrl', function($scope) {});
+.controller('AccountCtrl', function($scope) {
+
+});

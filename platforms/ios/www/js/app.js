@@ -57,15 +57,16 @@ angular.module('voto', ['ionic', 'voto.controllers', 'voto.services'])
         }
       }
     })
-    // .state('tab.friend-detail', {
-    //   url: '/friend/:friendId',
-    //   views: {
-    //     'tab-friends': {
-    //       templateUrl: 'templates/friend-detail.html',
-    //       controller: 'FriendDetailCtrl'
-    //     }
-    //   }
-    // })
+
+    .state('tab.create-view', {
+      url: '/create/view',
+      views: {
+        'tab-create': {
+          templateUrl: 'templates/create-view.html',
+          controller: 'CreateViewCtrl'
+        }
+      }
+    })
 
     .state('tab.account', {
       url: '/account',
