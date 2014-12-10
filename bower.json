@@ -1,7 +1,32 @@
 {
   "name": "voto",
-  "private": "true",
-  "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-beta.13"
+  "version": "0.0.0",
+  "homepage": "https://github.com/frozenbiome/voto",
+  "authors": [
+    "Grant Wu, David Kae, Evan Spiler, Alex Hawkins"
+  ],
+  "description": "voto",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngFx": "~1.0.5",
+    "angular-ui-router": "~0.2.13",
+    "moment": "~2.8.4",
+    "angular-momentjs": "~0.1.8",
+    "angular-camera": "~0.1.3",
+    "lodash": "~2.4.1",
+    "ng-file-upload": "~2.0.4",
+    "css-reset": "~2.5.1",
+    "bootstrap-sass": "~3.0.2"
+  },
+  "resolutions": {
+    "angular": "~1.3.0"
   }
 }
