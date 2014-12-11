@@ -3,9 +3,14 @@ angular.module('voto.services', [])
 .factory('GamesFactory', function($location, $http) {
 
   //Get all games not user-created or not yet submitted to
-  var getAllGamesForUser = function() {
+  var getAllGamesForUser = function(user) {
     //Emulator CAN connect to this IP
-    return $http.get("http://10.8.16.232:8000/api/prompt/foruser");
+    console.log("USER IS", user)
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/foruser",
+      method: "GET", 
+      params: {user: user}
+    })
   };
 
   //Get all games that a user has created or joined

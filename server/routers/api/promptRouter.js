@@ -6,7 +6,9 @@ var promptRouter = express.Router();
 
 //Should get all games that a user has created or joined
 promptRouter.get('/foruser', function (req, res) {
-  console.log("get to /foruser")
+
+  console.log("REQUEST", req.query.user)
+
   models.Prompt.fetchAll({
     //Grabs all the data about the related winner and user
       withRelated: ['winner', 'user']
