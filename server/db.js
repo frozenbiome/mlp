@@ -27,28 +27,30 @@ db.schema.hasTable('users').then(function (exists) {
       user.string('photoFilename', 255); //Relative to /media/
       user.timestamps();
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table users');
     });
   }
 });
 
 //friends user_user join
-db.schema.hasTable('user_user-join').then(function (exists) {
-  if (!exists) {
-    db.schema.createTable('user_user-join', function (friends) {
-      friends.integer('friend1').references('users.id');
-      friends.integer('friend2').references('users.id');
-      friends.boolean('accepted')
-    })
-  }
-})
+// db.schema.hasTable('friends').then(function (exists) {
+//   if (!exists) {
+//     db.schema.createTable('friends', function (friends) {
+//       friends.integer('friend1').references('users.id');
+//       friends.integer('friend2').references('users.id');
+//       friends.boolean('accepted')
+//     }).then(function (table) {
+//       console.log('Created Table Friends');
+//     });
+//   }
+// })
 
 // Model for games - one to many photo, winner - photo id, start time and end time, voting end time, title
 db.schema.hasTable('games').then(function (exists) {
   if (!exists) {
     db.schema.createTable('games', function (game) {
       game.increments('id').primary();
-      game.string('prompt', 255);
+      game.string('game', 255);
       game.integer('winPhoto_id').references('photos.id');
       game.integer('winPlayer_id').references('users.id');
       game.integer('owner_id').references('users.id');
@@ -57,7 +59,7 @@ db.schema.hasTable('games').then(function (exists) {
       game.timestamp('votingEndTime'); // TODO: Change to lower_case
       game.timestamps();
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table Games');
     });
   }
 });
@@ -72,7 +74,7 @@ db.schema.hasTable('photos').then(function (exists) {
       photo.integer('game_id').references('games.id');
       photo.timestamps();
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table Photos');
     });
   }
 });
@@ -84,10 +86,8 @@ db.schema.hasTable('user_game_photo-join').then(function (exists) {
       ugpj.integer('user_id').references('users.id');
       ugpj.integer('game_id').references('games.id');
       ugpj.integer('photo_id').references('photos.id');
-      ugpj.boolean('joined');
-      ugpj.boolean('submitted');
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table User_Game_Photo-Join');
     });
   }
 });
@@ -99,13 +99,35 @@ db.schema.hasTable('comments').then(function (exists) {
       photo.increments('id').primary();
       photo.string('content', 255).notNullable();
       photo.integer('user_id').references('users.id').notNullable();
-      photo.integer('prompt_id').references('games.id').notNullable();
+      photo.integer('game_id').references('games.id').notNullable();
       photo.timestamps();
     }).then(function (table) {
-      console.log('Created Table', table);
+      console.log('Created Table Comments');
     });
   }
 });
 
+
+
+
+
+
 var bookshelf = require('bookshelf')(db);
 module.exports = bookshelf;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

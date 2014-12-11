@@ -36,26 +36,29 @@ models.User = db.Model.extend({
   photo: function () {
     return this.hasMany(models.Photo);
   },
-  prompt: function () {
-    return this.hasMany(models.Prompt, 'user_id');
+  game: function () {
+    return this.hasMany(models.Game, 'user_id');
   },
   winner: function () {
-    return this.hasMany(models.Prompt, 'winner_id');
+    return this.hasMany(models.Game, 'winner_id');
   }
 });
 
-// Prompt - one to many photo, winner - photo id, start time and end time, voting end time, title
-models.Prompt = db.Model.extend({
-  tableName: 'prompts',
+// Game - one to many photo, winner - photo id, start time and end time, voting end time, title
+models.Game = db.Model.extend({
+  tableName: 'games',
   hasTimestamps: true,
   photos: function () {
     return this.hasMany(models.Photo, 'prompt_id');
   },
-  user: function () {
+  owner: function () {
     return this.belongsTo(models.User);
   },
   winner: function () {
     return this.belongsTo(models.Photo, 'winner_id');
+  },
+  user: function () {
+    return this.hasMany(models.User)
   }
 });
 
@@ -67,10 +70,10 @@ models.Photo = db.Model.extend({
     return this.belongsTo(models.User);
   },
   winner: function () {
-    return this.hasOne(models.Prompt, 'winner_id');
+    return this.hasOne(models.Game, 'winner_id');
   },
-  prompt: function () {
-    return this.belongsTo(models.Prompt);
+  game: function () {
+    return this.belongsTo(models.Game);
   }
 });
 
@@ -81,8 +84,8 @@ models.Comment = db.Model.extend({
   user: function () {
     return this.belongsTo(models.User);
   },
-  prompt: function () {
-    return this.belongsTo(models.Prompt);
+  game: function () {
+    return this.belongsTo(models.Game);
   },
 });
 
