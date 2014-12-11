@@ -67,7 +67,6 @@ client/dist/*
 Android/bin/
 Android/gen/
 Android/assets/
-platforms/**
 
 # generated files
 bin/

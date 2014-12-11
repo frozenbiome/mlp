@@ -1,0 +1,36 @@
+<ion-view view-title="Main">
+  <ion-content>
+   <!--CREATED GAMES-->
+    <div class="item item-divider item-positive">
+      Created Games
+    </div>
+
+    <ion-list>
+      <ion-item ng-repeat="game in games" type="item-text-wrap"href="#/tab/main/{{game.id}}">
+        Prompt: {{game.title}}
+        <br> Created by: {{game.user.email}}
+      </ion-item>
+    </ion-list>
+    <!--PLAYING GAMES-->
+    <div class="item item-divider item-balanced">
+      Playing
+    </div>
+    <ion-list>
+      <ion-item ng-repeat="game in games" type="item-text-wrap" href="#/tab/main/{{game.id}}">
+        Prompt: {{game.title}}
+        <br> Created by: {{game.user.email}}
+      </ion-item>
+    </ion-list>
+    <!--FINISHED-->
+    <div class="item item-divider item-assertive">
+      Finished
+    </div>
+    <ion-list>
+      <ion-item ng-repeat="game in games" type="item-text-wrap" href="#/tab/main/{{game.id}}">
+        Prompt: {{game.title}}
+        <br> Created by: {{game.user.email}}
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
