@@ -1,6 +1,7 @@
 angular.module('voto.controllers', [])
 
-.controller('MainCtrl', function($scope, $rootScope, GamesFactory) {
+
+.controller('MainCtrl', function($scope, GamesFactory, $ionicPopup) {
   //Auth.isAuth();
   //$scope.signOut = Auth.signOut;
   //$scope.limitChar = function (string, limit) {
@@ -13,6 +14,30 @@ angular.module('voto.controllers', [])
       $scope.games = res.data.all;
       console.log("getAllGamesForUser: ", res.data);
     });
+
+  $scope.loginPopup = function() {
+    console.log("hey")
+    $scope.data = {}
+
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      template: '<input type="text" ng-model="data.username">',
+      title: 'Pick a Name',
+      subTitle: 'any name...',
+      scope: $scope,
+      buttons: [
+        {
+          text: '<b>Save</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+          }
+        },
+      ]
+    });
+    myPopup.then(function(res) {
+      console.log('Tapped!', res);
+    });
+  };
 })
 
 .controller('CreateCtrl', function($scope, Create) {
