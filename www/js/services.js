@@ -2,14 +2,14 @@ angular.module('voto.services', [])
 
 .factory('GamesFactory', function($location, $http) {
 
-  //Get all games that a user is playing or has played
-  var getAllGames = function() {
+  //Get all games that a user has created or joined
+  var getAllGamesForUser = function() {
     //Emulator CAN connect to this IP
-    return $http.get("http://10.8.16.232:8000/api/prompt");
+    return $http.get("http://10.8.16.232:8000/api/prompt/foruser");
   };
 
   return {
-    getAllGames: getAllGames,
+    getAllGamesForUser: getAllGamesForUser,
     all: function() {
       return games;
     }

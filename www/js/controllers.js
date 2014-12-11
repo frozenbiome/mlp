@@ -7,7 +7,7 @@ angular.module('voto.controllers', [])
     //return (string.length < limit) ? string : string.substr(0, limit) + "...";
   //};
   //
-  GamesFactory.getAllGames()
+  GamesFactory.getAllGamesForUser()
     .then(function(res) {
       $scope.games = res.data.all;
       console.log("getAllPrompts: ", res.data);

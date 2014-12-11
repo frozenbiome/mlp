@@ -4,8 +4,41 @@ var models = require('../../models');
 
 var promptRouter = express.Router();
 
-promptRouter.get('/', function (req, res) {
+//Should get all games that a user has created or joined
+promptRouter.get('/foruser', function (req, res) {
   models.Prompt.fetchAll({
+    //Grabs all the data about the related winner and user
+      withRelated: ['winner', 'user']
+    })
+    .then(function (collection) {
+      var result = {
+        all: collection.toJSON(),
+        open: [],
+        pending: [],
+        closed: []
+      };
+      var timeNow = Date.now();
+      collection.forEach(function (prompt) {
+        var isEnded = (prompt.get('endTime') - timeNow) < 0;
+        var isVoteEnded = (prompt.get('votingEndTime') - timeNow) < 0;
+        if (isVoteEnded || prompt.get('winner') !== undefined) {
+          result['closed'].push(prompt.toJSON());
+        } else {
+          if (isEnded) {
+            result['pending'].push(prompt.toJSON());
+          } else {
+            result['open'].push(prompt.toJSON());
+          }
+        }
+      });
+      res.json(result);
+    });
+});
+
+//Gets all prompts
+promptRouter.get('/all', function (req, res) {
+  models.Prompt.fetchAll({
+    //Grabs all the data about the related winner and user
       withRelated: ['winner', 'user']
     })
     .then(function (collection) {
