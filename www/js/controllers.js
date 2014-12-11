@@ -1,13 +1,14 @@
 angular.module('voto.controllers', [])
 
-.controller('MainCtrl', function($scope, GamesFactory) {
+.controller('MainCtrl', function($scope, $rootScope, GamesFactory) {
   //Auth.isAuth();
   //$scope.signOut = Auth.signOut;
   //$scope.limitChar = function (string, limit) {
     //return (string.length < limit) ? string : string.substr(0, limit) + "...";
   //};
   //
-  GamesFactory.getAllGamesForUser()
+  $rootScope.user = 'jorge.silva@thejsj.com';
+  GamesFactory.getAllGamesForUser($rootScope.user)
     .then(function(res) {
       $scope.games = res.data.all;
       console.log("getAllGamesForUser: ", res.data);
@@ -18,7 +19,6 @@ angular.module('voto.controllers', [])
   $scope.games = Create.all();
 })
 
-<<<<<<< HEAD
 .controller('CreateViewCtrl', function($scope, $ionicViewService, Create) {
   $scope.createNewGame = function(topic) {
     var backView = $ionicViewService.getBackView();
