@@ -16,7 +16,7 @@ angular.module('voto.controllers', [])
     });
 
   $scope.saveGameToRootScope = function () {
-    $rootScope.gameID = this.id;
+    $rootScope.game = this;
   }
 
   $scope.loginPopup = function() {
@@ -70,10 +70,21 @@ angular.module('voto.controllers', [])
 })
 
 .controller('MyGameCtrl', function($scope, GamesFactory, $rootScope) {
-  
+
   $scope.getAllPhotosForGame = function() {
+    $scope.photos = [];
     GamesFactory.getAllPhotosForGame($rootScope.currentGame)
+    .then(function(photos) {
+      photos.forEach(function(photo) {
+        $scope.photos.push(photo);
+      })
+    })
   }
+
+  $scope.selectPhoto = function() {
+    $scope.selectedPhoto = this;
+  }
+
 });
 
 
