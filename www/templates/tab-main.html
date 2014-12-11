@@ -6,9 +6,8 @@
     </div>
 
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap"href="#/tab/main/{{game.id}}">
+      <ion-item ng-repeat="game in games" type="item-text-wrap" ng-click ="saveGameToRootScope()" href="#/tab/myGame/{{game.id}}">
         Prompt: {{game.title}}
-        <br> Created by: {{game.user.email}}
       </ion-item>
     </ion-list>
     <!--PLAYING GAMES-->

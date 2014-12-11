@@ -86,6 +86,16 @@ angular.module('voto', ['ionic', 'voto.controllers', 'voto.services'])
           controller: 'GameCtrl'
         }
       }
+    })
+
+    .state('tab.main-myGame', {
+      url: "/myGame/:gameId",
+      views: {
+        'tab-main' :{
+          templateUrl: "templates/tab-myGame.html",
+          controller: 'MyGameCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback

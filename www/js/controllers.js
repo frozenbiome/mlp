@@ -15,6 +15,10 @@ angular.module('voto.controllers', [])
       console.log("getAllGamesForUser: ", res.data);
     });
 
+  $scope.saveGameToRootScope = function () {
+    $rootScope.gameID = this.id;
+  }
+
   $scope.loginPopup = function() {
     $scope.data = {}
 
@@ -63,5 +67,18 @@ angular.module('voto.controllers', [])
   $scope.submitPhoto = function() {
     console.log('submitted')
   }
+})
+
+.controller('MyGameCtrl', function($scope, GamesFactory, $rootScope) {
+  
+  $scope.getAllPhotosForGame = function() {
+    GamesFactory.getAllPhotosForGame($rootScope.currentGame)
+  }
 });
+
+
+
+
+
+
 

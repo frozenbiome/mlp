@@ -18,6 +18,10 @@ angular.module('voto.services', [])
     return $http.get("http://10.8.16.232:8000/api/prompt/all");
   };
 
+  var getAllPhotosForGame = function(gameID) {
+    return $http.get("") //TODO: fill out proper get request for gameID
+  }
+
   return {
     getAllGamesForUser: getAllGamesForUser,
     getAllGames: getAllGames,

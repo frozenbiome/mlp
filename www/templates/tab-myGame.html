@@ -1,0 +1,16 @@
+<ion-view view-title="GameView">
+  <ion-content>
+  	<div class="prompt">
+  		<h1>"{{game.prompt}}"</h1>
+  	</div>
+  	
+  	<div class="photos" ng-init="getAllPhotosForGame()">
+  		<span class="submission" ng-repeat="photo in photos" ng-click="selectPhoto()"></span>
+  	</div>
+
+  	<div class="winnerButton">
+  		<button type="button" class="button button-block button-positive" ng-click="chooseWinner()">Choose Winner</button>
+  	</div>
+
+  </ion-content>
+</ion-view>
