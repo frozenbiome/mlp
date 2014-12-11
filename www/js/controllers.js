@@ -18,8 +18,14 @@ angular.module('voto.controllers', [])
   $scope.games = Create.all();
 })
 
-.controller('CreateViewCtrl', function($scope, $stateParams, Create) {
-
+.controller('CreateViewCtrl', function($scope, Create) {
+  $scope.createNewGame = function(topic) {
+    this.topic = topic;
+    // this.pub = true;
+    console.log(this.topic);
+    // console.log(this.pub);
+    Create.createNewGame()
+  }
 })
 
 .controller('AccountCtrl', function($scope) {

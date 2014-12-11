@@ -18,6 +18,11 @@ angular.module('voto.services', [])
 
 .factory('Create', function($location) {
   // Some fake testing data
+  var createNewGame = function() {
+    console.log('post');
+    //$http.post    data: {username: '', prompt: '', private: true/false}
+  }
+
   var games = [{
     prompt: 'Dogs',
     creator: 'Scruff McGruff'
@@ -33,13 +38,9 @@ angular.module('voto.services', [])
   }];
 
   return {
+    createNewGame: createNewGame,
     all: function() {
       return games;
     }
   }
-
-  // get: function(friendId) {
-  //   // Simple index lookup
-  //   return friends[friendId];
-  // }
 });
