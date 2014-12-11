@@ -18,9 +18,11 @@ angular.module('voto.controllers', [])
   $scope.games = Create.all();
 })
 
-.controller('CreateViewCtrl', function($scope, $location, Create) {
+.controller('CreateViewCtrl', function($scope, $ionicViewService, Create) {
   $scope.createNewGame = function(topic) {
-    $location.path('/main');
+    var backView = $ionicViewService.getBackView();
+    backView && backView.go();
+    // $location.path('/main');
     this.topic = topic;
     console.log(this.topic);
     Create.createNewGame()
