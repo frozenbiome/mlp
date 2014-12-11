@@ -5,7 +5,7 @@ angular.module('voto.services', [])
   //Get all games that a user has created or joined
   var getAllGamesForUser = function() {
     //Emulator CAN connect to this IP
-    return $http.get("http://10.8.16.232:8000/api/prompt/foruser");
+    return $http.get("http://10.8.16.232:8000/api/prompt/all");
   };
 
   return {
