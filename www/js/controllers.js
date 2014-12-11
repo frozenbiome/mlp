@@ -10,7 +10,7 @@ angular.module('voto.controllers', [])
   GamesFactory.getAllGamesForUser()
     .then(function(res) {
       $scope.games = res.data.all;
-      console.log("getAllPrompts: ", res.data);
+      console.log("getAllGamesForUser: ", res.data);
     });
 })
 
@@ -18,6 +18,7 @@ angular.module('voto.controllers', [])
   $scope.games = Create.all();
 })
 
+<<<<<<< HEAD
 .controller('CreateViewCtrl', function($scope, $ionicViewService, Create) {
   $scope.createNewGame = function(topic) {
     var backView = $ionicViewService.getBackView();

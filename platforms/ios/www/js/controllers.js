@@ -7,7 +7,7 @@ angular.module('voto.controllers', [])
     //return (string.length < limit) ? string : string.substr(0, limit) + "...";
   //};
   //
-  GamesFactory.getAllGames()
+  GamesFactory.getAllGamesForUser()
     .then(function(res) {
       $scope.games = res.data.all;
       console.log("getAllPrompts: ", res.data);
@@ -18,8 +18,14 @@ angular.module('voto.controllers', [])
   $scope.games = Create.all();
 })
 
-.controller('CreateViewCtrl', function($scope, $stateParams, Create) {
-
+.controller('CreateViewCtrl', function($scope, Create) {
+  $scope.createNewGame = function(topic) {
+    this.topic = topic;
+    // this.pub = true;
+    console.log(this.topic);
+    // console.log(this.pub);
+    Create.createNewGame()
+  }
 })
 
 .controller('AccountCtrl', function($scope) {

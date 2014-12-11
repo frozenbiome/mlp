@@ -2,14 +2,21 @@ angular.module('voto.services', [])
 
 .factory('GamesFactory', function($location, $http) {
 
-  //Get all games that a user has created or joined
+  //Get all games not user-created or not yet submitted to
   var getAllGamesForUser = function() {
+    //Emulator CAN connect to this IP
+    return $http.get("http://10.8.16.232:8000/api/prompt/foruser");
+  };
+
+  //Get all games that a user has created or joined
+  var getAllGames = function() {
     //Emulator CAN connect to this IP
     return $http.get("http://10.8.16.232:8000/api/prompt/all");
   };
 
   return {
     getAllGamesForUser: getAllGamesForUser,
+    getAllGames: getAllGames,
     all: function() {
       return games;
     }
@@ -18,11 +25,6 @@ angular.module('voto.services', [])
 
 .factory('Create', function($location) {
   // Some fake testing data
-  var createNewGame = function() {
-    console.log('post');
-    //$http.post    data: {username: '', prompt: '', private: true/false}
-  }
-
   var games = [{
     prompt: 'Dogs',
     creator: 'Scruff McGruff'
@@ -38,9 +40,13 @@ angular.module('voto.services', [])
   }];
 
   return {
-    createNewGame: createNewGame,
     all: function() {
       return games;
     }
   }
+
+  // get: function(friendId) {
+  //   // Simple index lookup
+  //   return friends[friendId];
+  // }
 });

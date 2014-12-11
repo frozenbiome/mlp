@@ -1,24 +1,12 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
-
 <ion-view view-title="CreateView">
   <ion-content>
 
 	<div class="list">
 	  <label class="item item-input">
-	    <input type="text" placeholder="Your Prompt (e.g. Birds of Prey)">
+	    <input ng-model="topic" type="text" placeholder="Topic (e.g. Birds of Prey)">
 	  </label>
-<!-- 	  <label class="item item-input">
-	    <input type="text" placeholder="Room Size">
-	  </label>
-	  <label class="item item-input">
-	    <input type="text" placeholder="End Time">
-	  </label> -->
-	  <label class="item item-input item-select">
+	  
+<!-- 	  <label class="item item-input item-select">
 	    <div class="input-label">
 	      Game Mode
 	    </div>
@@ -26,10 +14,10 @@
 	      <option selected>Public</option>
 	      <option>Private</option>
 	    </select>
-	  </label>
+	  </label> -->
 
 	<div class="padding">
-  	  <button class="button button-block button-balanced">
+  	  <button type="button" class="button button-block button-balanced" ng-click="createNewGame(topic)">
   	  	Start
   	  </button>
 	</div>
