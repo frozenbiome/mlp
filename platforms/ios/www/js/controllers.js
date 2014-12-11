@@ -29,6 +29,10 @@ angular.module('voto.controllers', [])
 >>>>>>> Main view scaffold and controller. Gets all prompts from Grant's IP.
 })
 
+.controller('GameCtrl', function($scope, Main) {
+  $scope.games = Main.all();
+})
+
 .controller('CreateCtrl', function($scope, Create) {
   $scope.games = Create.all();
 })

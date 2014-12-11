@@ -23,16 +23,20 @@ angular.module('voto.services', [])
   // Some fake testing data
   var games = [{
     prompt: 'Dogs',
-    creator: 'Scruff McGruff'
+    creator: 'Scruff McGruff',
+    id: 1
   }, {
     prompt: 'War',
-    creator: 'G.I. Joe'
+    creator: 'G.I. Joe',
+    id: 2
   }, {
     prompt: 'Hair',
-    creator: 'Miss Frizzle'
+    creator: 'Miss Frizzle',
+    id: 3
   }, {
     prompt: 'Pokemon',
-    creator: 'Ash Ketchum'
+    creator: 'Ash Ketchum',
+    id: 4
   }];
 
   return {

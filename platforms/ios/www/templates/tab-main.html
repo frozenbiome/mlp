@@ -4,8 +4,9 @@
     <div class="item item-divider item-positive">
       Created Games
     </div>
+
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap">
+      <ion-item ng-repeat="game in games" type="item-text-wrap"href="#/tab/main/{{game.id}}">
         Prompt: {{game.prompt}}
         <br> Created by: {{game.creator}}
       </ion-item>
@@ -15,7 +16,7 @@
       Playing
     </div>
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap">
+      <ion-item ng-repeat="game in games" type="item-text-wrap" href="#/tab/main/{{game.id}}">
         Prompt: {{game.prompt}}
         <br> Created by: {{game.creator}}
       </ion-item>
@@ -25,7 +26,7 @@
       Finished
     </div>
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap">
+      <ion-item ng-repeat="game in games" type="item-text-wrap" href="#/tab/main/{{game.id}}">
         Prompt: {{game.prompt}}
         <br> Created by: {{game.creator}}
       </ion-item>
