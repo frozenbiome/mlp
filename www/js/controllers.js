@@ -57,4 +57,9 @@ angular.module('voto.controllers', [])
 
 .controller('AccountCtrl', function($scope) {
 
+})
+
+.controller('GameCtrl', function($scope, GamesFactory) {
+
 });
+
