@@ -16,27 +16,27 @@ angular.module('voto.controllers', [])
     });
 
   $scope.loginPopup = function() {
-    console.log("hey")
     $scope.data = {}
 
-    // An elaborate, custom popup
-    var myPopup = $ionicPopup.show({
-      template: '<input type="text" ng-model="data.username">',
-      title: 'Pick a Name',
-      subTitle: 'any name...',
-      scope: $scope,
-      buttons: [
-        {
-          text: '<b>Save</b>',
-          type: 'button-positive',
-          onTap: function(e) {
-          }
-        },
-      ]
-    });
-    myPopup.then(function(res) {
-      console.log('Tapped!', res);
-    });
+    if (!$rootScope.username) {
+      var myPopup = $ionicPopup.show({
+        template: '<input type="text" ng-model="data.username">',
+        title: 'Pick a Name',
+        subTitle: 'any name...',
+        scope: $scope,
+        buttons: [
+          {
+            text: '<b>Save</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+            }
+          },
+        ]
+      });
+      myPopup.then(function(res) {
+        $rootScope.username = $scope.data.username;
+      });
+    }
   };
 })
 
