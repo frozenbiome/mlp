@@ -1,7 +1,7 @@
 angular.module('voto.controllers', [])
 
 
-.controller('MainCtrl', function($scope, GamesFactory, $ionicPopup) {
+.controller('MainCtrl', function($scope, $rootScope, GamesFactory, $ionicPopup) {
   //Auth.isAuth();
   //$scope.signOut = Auth.signOut;
   //$scope.limitChar = function (string, limit) {
