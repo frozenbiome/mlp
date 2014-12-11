@@ -1,9 +1,21 @@
 <ion-view view-title="GameView">
   <ion-content>
+	<div class="padding">
+	  <h1 align="center">"Prompt"</h1>
+
+	  <!-- Camera/Upload View -->
+
+	  <div class="button-bar">
+	    <a class="button button-stable">Snap</a>
+	    <a class="button button-stable">Upload</a>
+	  </div>
+
+	</div>
 
 	<div class="padding">
-	  {{title}}
-	  {{user.email}}
+  	  <button type="button" class="button button-block button-positive" ng-click="submitPhoto()">
+  	  	Submit
+  	  </button>
 	</div>
 
   </ion-content>

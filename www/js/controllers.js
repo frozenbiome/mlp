@@ -60,6 +60,8 @@ angular.module('voto.controllers', [])
 })
 
 .controller('GameCtrl', function($scope, GamesFactory) {
-
+  $scope.submitPhoto = function() {
+    console.log('submitted')
+  }
 });
 
