@@ -7,7 +7,7 @@ angular.module('voto.services', [])
     //Emulator CAN connect to this IP
     console.log("USER IS", user)
     return $http({
-      url: "http://10.8.16.232:8000/api/prompt/foruser",
+      url: "http://10.8.16.232:8000/api/prompt/created",
       method: "GET", 
       params: {user: user}
     })

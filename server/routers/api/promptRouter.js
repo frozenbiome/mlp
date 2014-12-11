@@ -4,16 +4,24 @@ var models = require('../../models');
 
 var promptRouter = express.Router();
 
-//Should get all games that a user has created or joined
-promptRouter.get('/foruser', function (req, res) {
+//Should take a user email and send back the user id
+promptRouter.get('/user', function(req,res) {
 
-  console.log("REQUEST", req.query.user)
+  var user = req.query.user;
+
+})
+
+//Should get all games that a user has created
+promptRouter.get('/created', function (req, res) {
+
+  var user = req.query.user;
 
   models.Prompt.fetchAll({
     //Grabs all the data about the related winner and user
       withRelated: ['winner', 'user']
     })
     .then(function (collection) {
+      console.log(collection)
       var result = {
         all: collection.toJSON(),
         open: [],
@@ -38,12 +46,25 @@ promptRouter.get('/foruser', function (req, res) {
     });
 });
 
+//Should get all games that a user has submitted to
+promptRouter.get('/submitted', function (req, res) {
+  // 1. Query all photoos where user.id = userId
+  // 2. Query all prompt ids for those photos
+  // 3. Query all prompts where user.id === userId or id in promptIds
+
+
+ // get all prompts with photos
+ // get all users for photos
+ // filter prompts by promts where any of the photos haver a prompt.photos[i]user.id === userId
+ // or prompt.user_id is userId
+});
+
 //Gets all prompts
 promptRouter.get('/all', function (req, res) {
   console.log("get to /all")
   models.Prompt.fetchAll({
     //Grabs all the data about the related winner and user
-      withRelated: ['winner', 'user']
+      withRelated: ['winner', 'user', 'photo']
     })
     .then(function (collection) {
       var result = {
