@@ -63,6 +63,7 @@ angular.module('voto.services', [])
     getAllGamesForUser: getAllGamesForUser,
     getAllGames: getAllGames,
     getAllPhotosForGame: getAllPhotosForGame,
+    getAllPlayingGames: getAllPlayingGames,
     getUserInfo: getUserInfo,
     chooseWinner: chooseWinner,
     all: function() {

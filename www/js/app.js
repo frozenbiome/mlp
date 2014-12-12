@@ -93,7 +93,7 @@ angular.module('voto', ['ionic', 'voto.controllers', 'voto.services'])
       views: {
         'tab-main' :{
           templateUrl: "templates/tab-myGame.html",
-          controller: 'MyGameCtrl'
+          controller: 'GameCtrl'
         }
       }
     });

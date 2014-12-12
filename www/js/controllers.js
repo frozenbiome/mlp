@@ -93,15 +93,12 @@ angular.module('voto.controllers', [])
 
 })
 
-.controller('GameCtrl', function($scope, GamesFactory) {
+.controller('GameCtrl', function($scope, $rootScope, GamesFactory) {
   $scope.submitPhoto = function() {
     console.log('submitted')
   }
-})
-
-.controller('MyGameCtrl', function($scope, GamesFactory, $rootScope) {
-
   $scope.getAllPhotosForGame = function() {
+    console.log("GetAllPhotos")
     $scope.photos = [];
     GamesFactory.getAllPhotosForGame($rootScope.currentGame)
     .then(function(photos) {
@@ -118,6 +115,10 @@ angular.module('voto.controllers', [])
   $scope.chooseWinner = function() {
     GamesFactory.chooseWinner(this.id, $rootScope.currentGame.id)
   }
+})
+
+.controller('MyGameCtrl', function($scope, GamesFactory, $rootScope) {
+
 
 });
 
