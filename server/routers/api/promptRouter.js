@@ -40,7 +40,7 @@ promptRouter.get('/user', function(req,res) {
     })
 })
 
-//Should get all games that a user has created
+//Gets all games that a user has created
 promptRouter.get('/created', function (req, res) {
 
   var user_id = parseInt(req.query.user_id);
@@ -61,7 +61,6 @@ promptRouter.get('/created', function (req, res) {
       collection.forEach(function(prompt) {
         //Push if it was created by user
         if (prompt.get('user_id') === user_id) {
-          console.log("PUSHING")
           result['all'].push(prompt.toJSON());
           //Push to closed if there's a winner id
           if(prompt.get('winner_id') !== undefined) {
@@ -94,6 +93,7 @@ promptRouter.get('/created', function (req, res) {
 //Should get all games that a user has submitted to
 promptRouter.get('/submitted', function (req, res) {
   // 1. Query all photoos where user.id = userId
+  //
   // 2. Query all prompt ids for those photos
   // 3. Query all prompts where user.id === userId or id in promptIds
 
