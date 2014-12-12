@@ -28,11 +28,22 @@ angular.module('voto.services', [])
   }
 
   var getAllPhotosForGame = function(gameID) {
-    return $http.get("") //TODO: fill out proper get request for gameID
+    return $http({ 
+      url: "http://10.8.16.232:8000/", //TODO: fill out proper get request for gameID
+      method: "GET", 
+      params: {game: gameID}
+    }).then(function(res) {return res.data;});
   }
 
   var chooseWinner = function(photoID, gameID) {
-    return $http.post("")
+    return $http({ 
+      url: "http://10.8.16.232:8000/", //TODO: fill out proper post request for updating winner category in game model
+      method: "POST", 
+      params: {
+        game: gameID,
+        photo: photoID
+      }
+    }).then(function(res) {return res.data;});
   }
 
   return {
