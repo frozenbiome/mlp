@@ -107,14 +107,16 @@ angular.module('voto.controllers', [])
         targetWidth: 300,
         targetHeight: 300,
         popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
+        saveToPhotoAlbum: true
     };
 
-    $cordovaCamera.getPicture(options).then(function(imageData) {
-        $scope.imgURI = "data:image/jpeg;base64," + imageData;
-    }, function(err) {
+    $cordovaCamera.getPicture(options)
+      .then(function(imageData) {
+          $scope.imgURI = "data:image/jpeg;base64," + imageData;
+      })
+      .catch(function(err) {
         // An error occured. Show a message to the user
-    });
+      });
   }
   $scope.submitPhoto = function() {
     console.log('submitted')
