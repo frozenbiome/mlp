@@ -151,7 +151,7 @@ angular.module('voto.controllers', [])
         method: "POST",
         params: {
           prompt_id: curr_game.id,
-          user_id: $rootScope.user,
+          user_id: $rootScope.user.id,
           //prompt_id: 1,
           //user_id: 2,
           image_string: $scope.imgURI
