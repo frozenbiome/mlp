@@ -8,22 +8,35 @@ var promptRouter = express.Router();
 //provided email is not found.
 promptRouter.get('/user', function(req,res) {
 
-  //GamesFactory.getUserId($rootScope.user)
-    //.then(function(res) {
-      //console.log(res.data);
-    //});
   var user = req.query.user;
+  console.log("LOOKING UP", user);
 
   new models.User({'email': user})
     .fetch()
     .then(function(model) {
-      //if (model === null)
-      var result = {
-        email: model.attributes.email,
-        id: model.attributes.id
-      }
+      //If not found, create and return
+      if (model === null) {
+        new models.User({
+          'email': user,
+          'password': 'dummypass'
+        })
+        .save().then(function(model) {
+          var result = {
+            email: model.attributes.email,
+            id: model.attributes.id
+          }
 
-      res.json(result);
+          res.json(result);
+        })
+      //If found, just return
+      } else {
+        var result = {
+          email: model.attributes.email,
+          id: model.attributes.id
+        }
+
+        res.json(result);
+      }
     })
 })
 

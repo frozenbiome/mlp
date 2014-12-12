@@ -18,7 +18,8 @@ angular.module('voto.services', [])
     return $http.get("http://10.8.16.232:8000/api/prompt/all");
   };
 
-
+  //Gets user info from server for a given username. Server creates if not
+  //found.
   var getUserInfo = function(username) {
     return $http({
       url: "http://10.8.16.232:8000/api/prompt/user",
