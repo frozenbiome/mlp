@@ -71,7 +71,7 @@ angular.module('voto.services', [])
   }
 })
 
-.factory('Create', function($location) {
+.factory('Create', function($location, $http) {
   var createNewGame = function() {
     // $http.post data:{creator: '', prompt: ''}
   }
@@ -90,8 +90,19 @@ angular.module('voto.services', [])
     creator: 'Ash Ketchum'
   }];
 
+  var getAllPublicGames = function(user) {   
+  console.log("USER IS", user)
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/public",
+      method: "GET", 
+      //Change this to pull from $rootScope
+      params: {user_id: user.id}
+    })
+  }
+
   return {
     createNewGame: createNewGame,
+    getAllPublicGames: getAllPublicGames,
     all: function() {
       return games;
     }

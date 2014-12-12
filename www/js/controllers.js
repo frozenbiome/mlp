@@ -68,6 +68,7 @@ angular.module('voto.controllers', [])
   $scope.games = Create.all();
 
   $scope.getAllPublicGames = function () {
+
     Create.getAllPublicGames($rootScope.user)
     .then(function(res) {
       $scope.publicGames = res.data;
@@ -78,13 +79,13 @@ angular.module('voto.controllers', [])
 })
 
 .controller('CreateViewCtrl', function($scope, $ionicViewService, Create) {
-  $scope.createNewGame = function(propmt) {
+  $scope.createNewGame = function(prompt) {
     var backView = $ionicViewService.getBackView();
     backView && backView.go();
     // $location.path('/main');
-    var propmt = this.propmt;
-    console.log(propmt);
-    Create.createNewGame(propmt)
+    var prompt = this.prompt;
+    console.log(prompt);
+    Create.createNewGame(prompt)
   }
 })
 
