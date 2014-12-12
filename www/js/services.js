@@ -113,11 +113,11 @@ angular.module('voto.services', [])
   }];
 
   var getAllPublicGames = function(user) {   
-  console.log("USER IS", user)
+  console.log("USER ID IS", user)
     return $http({
-      url: "http://10.8.16.232:8000/api/prompt/public",
+      url: "http://10.8.16.232:8000/api/prompt/all",
       method: "GET", 
-      //Change this to pull from $rootScope
+      // Change this to pull from $rootScope
       params: {user_id: user.id}
     })
   }

@@ -136,19 +136,19 @@ promptRouter.get('/all', function (req, res) {
         closed: []
       };
       var timeNow = Date.now();
-      collection.forEach(function (prompt) {
-        var isEnded = (prompt.get('endTime') - timeNow) < 0;
-        var isVoteEnded = (prompt.get('votingEndTime') - timeNow) < 0;
-        if (isVoteEnded || prompt.get('winner') !== undefined) {
-          result['closed'].push(prompt.toJSON());
-        } else {
-          if (isEnded) {
-            result['pending'].push(prompt.toJSON());
-          } else {
-            result['open'].push(prompt.toJSON());
-          }
-        }
-      });
+      // collection.forEach(function (prompt) {
+        // var isEnded = (prompt.get('endTime') - timeNow) < 0;
+        // var isVoteEnded = (prompt.get('votingEndTime') - timeNow) < 0;
+        // if (isVoteEnded || prompt.get('winner') !== undefined) {
+        //   result['closed'].push(prompt.toJSON());
+        // } else {
+        //   if (isEnded) {
+        //     result['pending'].push(prompt.toJSON());
+        //   } else {
+        //     result['open'].push(prompt.toJSON());
+        //   }
+        // }
+      // });
       res.json(result);
     });
 });

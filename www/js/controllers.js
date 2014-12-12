@@ -74,6 +74,7 @@ angular.module('voto.controllers', [])
 
     Create.getAllPublicGames($rootScope.user)
     .then(function(res) {
+      console.log(res)
       $scope.publicGames = res.data;
       console.log("Public Games: ", res.data);
     });
