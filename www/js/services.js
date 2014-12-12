@@ -9,7 +9,7 @@ angular.module('voto.services', [])
     return $http({
       url: "http://10.8.16.232:8000/api/prompt/created",
       method: "GET", 
-      params: {user: user}
+      params: {user_id: 1}
     })
   };
 
@@ -22,9 +22,15 @@ angular.module('voto.services', [])
     return $http.get("") //TODO: fill out proper get request for gameID
   }
 
+  var getUserInfo = function(username) {
+    return $http.get("") //TODO: fill out proper get request for username
+  }
+
   return {
     getAllGamesForUser: getAllGamesForUser,
     getAllGames: getAllGames,
+    getAllPhotosForGame: getAllPhotosForGame,
+    getUserInfo: getUserInfo,
     all: function() {
       return games;
     }
