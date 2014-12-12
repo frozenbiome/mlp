@@ -120,7 +120,7 @@ angular.module('voto.controllers', [])
   }
 
   $scope.submitPhoto = function() {
-    console.log('submitted')
+    alert($scope.imgURI);
   };
 
   $scope.getGameData = function() {

@@ -7,20 +7,12 @@
 	  <div class="ifPending" ng-if="!rootScope.currentGame.winner_id">
 		<img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
     	<img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
-    	<button class="button button-block button-positive" ng-click="takePicture()">Snap</button>
-		  
-<!-- 		  <div class="button-bar">
-		    <a class="button button-stable">Snap</a>
-		    <a class="button button-stable">Upload</a>
-		  </div> -->
+    	<button class="button button-block button-assertive" ng-click="takePicture()">Snap</button>
+	  </div>
 
-	   </div>
-
-<!-- 		<div class="padding">
-	  	  <button type="button" class="button button-block button-positive" ng-click="submitPhoto()">
-	  	  	Submit
-	  	  </button>
-		</div> -->
+      <button type="button" class="button button-block button-positive" ng-click="submitPhoto()">
+  	  	Submit
+  	  </button>
 
 	</div>
 
