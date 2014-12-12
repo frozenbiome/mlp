@@ -32,7 +32,7 @@ angular.module('voto.services', [])
   //Has photo attributes
   var getGameData = function (game_id) {
     return $http({
-      url: "http://10.8.16.232:8000/api/prompt/1",
+      url: "http://10.8.16.232:8000/api/prompt/" + game_id,
       method: "GET", 
     })
       .then(function (res) {

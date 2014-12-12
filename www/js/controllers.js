@@ -126,7 +126,7 @@ angular.module('voto.controllers', [])
   $scope.getGameData = function() {
     GamesFactory.getGameData($rootScope.currentGame.id)
       .then(function(data) {
-        console.log("Game Data", data)
+        console.log("Server Game Data", data)
         $scope.game = data;
         $scope.dataLoaded = true;
       })
