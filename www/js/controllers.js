@@ -17,7 +17,7 @@ angular.module('voto.controllers', [])
     if ($rootScope.user) {
       GamesFactory.getAllGamesForUser($rootScope.user)
       .then(function(res) {
-        $scope.createdGames = res.data.all;
+        $scope.createdGames = res.data;
         console.log("getAllGamesForUser: ", res.data);
       });
     }
