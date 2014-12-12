@@ -16,7 +16,7 @@ angular.module('voto.controllers', [])
     });
 
   $scope.saveGameToRootScope = function () {
-    $rootScope.game = this;
+    $rootScope.currentGame = this;
   }
 
   $scope.loginPopup = function() {
@@ -90,7 +90,7 @@ angular.module('voto.controllers', [])
   }
 
   $scope.chooseWinner = function() {
-    GamesFactory.chooseWinner(this.id, $rootScope.game.id)
+    GamesFactory.chooseWinner(this.id, $rootScope.currentGame.id)
   }
 
 });
