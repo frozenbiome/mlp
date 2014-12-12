@@ -14,6 +14,17 @@ angular.module('voto.services', [])
     })
   };
 
+  var getAllPlayingGames = function(user) {
+    //Emulator CAN connect to this IP
+    console.log("USER IS", user)
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/playing",
+      method: "GET", 
+      //Change this to pull from $rootScope
+      params: {user_id: user.id}
+    })
+  };  
+
   //Get all games that a user has created or joined
   var getAllGames = function() {
     return $http.get("http://10.8.16.232:8000/api/prompt/all");

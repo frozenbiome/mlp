@@ -17,8 +17,18 @@ angular.module('voto.controllers', [])
     if ($rootScope.user) {
       GamesFactory.getAllGamesForUser($rootScope.user)
       .then(function(res) {
-        $scope.games = res.data.all;
+        $scope.createdGames = res.data.all;
         console.log("getAllGamesForUser: ", res.data);
+      });
+    }
+  }
+
+  $scope.getAllPlayingGames = function () {
+    if ($rootScope.user) {
+      GamesFactory.getAllPlayingGames($rootScope.user)
+      .then(function(res) {
+        $scope.playingGames = res.data.all;
+        console.log("Playing Games: ", res.data);
       });
     }
   }
@@ -50,12 +60,6 @@ angular.module('voto.controllers', [])
       });
     }
   }();
-
-  GamesFactory.getAllGamesForUser($rootScope.user)
-    .then(function(res) {
-      $scope.games = res.data.all;
-      console.log("getAllGamesForUser: ", res.data);
-    });
 
 })
 
