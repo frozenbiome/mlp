@@ -4,44 +4,76 @@ var models = require('../../models');
 
 var promptRouter = express.Router();
 
-//Should take a user email and send back the user id
+//Should take a user email and send back the user id, creating a new user if the
+//provided email is not found.
 promptRouter.get('/user', function(req,res) {
 
+  //GamesFactory.getUserId($rootScope.user)
+    //.then(function(res) {
+      //console.log(res.data);
+    //});
   var user = req.query.user;
 
+  new models.User({'email': user})
+    .fetch()
+    .then(function(model) {
+      //if (model === null)
+      var result = {
+        email: model.attributes.email,
+        id: model.attributes.id
+      }
+
+      res.json(result);
+    })
 })
 
 //Should get all games that a user has created
 promptRouter.get('/created', function (req, res) {
 
-  var user = req.query.user;
+  var user_id = parseInt(req.query.user_id);
 
+  //Get all prompts
   models.Prompt.fetchAll({
     //Grabs all the data about the related winner and user
       withRelated: ['winner', 'user']
     })
     .then(function (collection) {
-      console.log(collection)
       var result = {
-        all: collection.toJSON(),
+        all: [],
         open: [],
         pending: [],
         closed: []
       };
-      var timeNow = Date.now();
-      collection.forEach(function (prompt) {
-        var isEnded = (prompt.get('endTime') - timeNow) < 0;
-        var isVoteEnded = (prompt.get('votingEndTime') - timeNow) < 0;
-        if (isVoteEnded || prompt.get('winner') !== undefined) {
-          result['closed'].push(prompt.toJSON());
-        } else {
-          if (isEnded) {
-            result['pending'].push(prompt.toJSON());
-          } else {
-            result['open'].push(prompt.toJSON());
+
+      collection.forEach(function(prompt) {
+        //Push if it was created by user
+        if (prompt.get('user_id') === user_id) {
+          console.log("PUSHING")
+          result['all'].push(prompt.toJSON());
+          //Push to closed if there's a winner id
+          if(prompt.get('winner_id') !== undefined) {
+            result['closed'].push(prompt.toJSON());
           }
         }
       });
+
+      //var timeNow = Date.now();
+      //collection.forEach(function (prompt) {
+        //var isEnded = (prompt.get('endTime') - timeNow) < 0;
+        //var isVoteEnded = (prompt.get('votingEndTime') - timeNow) < 0;
+        //if (isVoteEnded || prompt.get('winner') !== undefined) {
+          //result['closed'].push(prompt.toJSON());
+        //} else {
+          //if (isEnded) {
+            //result['pending'].push(prompt.toJSON());
+          //} else {
+            //result['open'].push(prompt.toJSON());
+          //}
+        //}
+      //});
+
+
+
       res.json(result);
     });
 });
