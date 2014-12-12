@@ -1,7 +1,7 @@
 angular.module('voto.controllers', [])
 
 
-.controller('MainCtrl', function($scope, $rootScope, GamesFactory, $ionicPopup) {
+.controller('MainCtrl', function($scope, $rootScope, GamesFactory, $ionicPopup, $upload) {
   //Auth.isAuth();
   //$scope.signOut = Auth.signOut;
   //$scope.limitChar = function (string, limit) {
@@ -112,6 +112,7 @@ angular.module('voto.controllers', [])
 
     $cordovaCamera.getPicture(options)
       .then(function(imageData) {
+        //Changed to png
           $scope.imgURI = "data:image/png;base64," + imageData;
       })
       .catch(function(err) {
@@ -121,6 +122,7 @@ angular.module('voto.controllers', [])
 
   $scope.submitPhoto = function() {
     alert($scope.imgURI);
+    console.log('submitted')
   };
 
   $scope.getGameData = function() {
