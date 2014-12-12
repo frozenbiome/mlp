@@ -29,6 +29,15 @@ angular.module('voto.services', [])
     return $http.get("http://10.8.16.232:8000/api/prompt/all");
   };
 
+  //Has photo attributes
+  var getPromptData = function (id) {
+    return $http.get(MainUrl.get('/api/prompt/' + id))
+      .then(function (res) {
+        return res.data;
+      });
+  };
+
+
   //Gets user info from server for a given username. Server creates if not
   //found.
   var getUserInfo = function(username) {

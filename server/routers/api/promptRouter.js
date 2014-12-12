@@ -190,27 +190,34 @@ promptRouter.post('/', function (req, res) {
 });
 
 promptRouter.get('/:id', function (req, res) {
+  console.log("GETTING GAME DATA")
+
   collections.Prompts
     .query('where', 'id', '=', req.param('id'))
     .fetchOne({
       withRelated: ['photos', 'user', 'winner']
     })
+
     .then(function (model) {
       var _model = model.toJSON();
+      //If there's a winner, return the winning photo
       if (model.related('winner') !== undefined) {
         return model.related('winner')
           .fetch({
             withRelated: ['user']
           })
           .then(function (winnerPhoto) {
+            //Should be winnerPhoto?
             return model;
           });
       }
       return model;
     })
+
     .then(function (model) {
       if (!model) throw new Error('No Model Found');
       res.json(model.toJSON());
+
       return true;
     }).catch(function (err) {
       console.log('Error:');

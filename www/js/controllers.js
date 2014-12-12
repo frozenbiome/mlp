@@ -118,27 +118,39 @@ angular.module('voto.controllers', [])
         // An error occured. Show a message to the user
       });
   }
+
   $scope.submitPhoto = function() {
     console.log('submitted')
-  }
-  $scope.getAllPhotosForGame = function() {
-    console.log("GetAllPhotos")
-    $scope.photos = [];
-    GamesFactory.getAllPhotosForGame($rootScope.currentGame)
-    .then(function(photos) {
-      photos.forEach(function(photo) {
-        $scope.photos.push(photo);
+  };
+
+  $scope.getGameData = function() {
+    GamesFactory.getGameData($rootScope.currentGame.id)
+      .then(function(data) {
+        console.log("Game Data", data)
+        $scope.game = data;
+        $scope.dataLoaded = true;
       })
-    })
-  }
+  };
+
+  //Maybe not necessary, as getGameData should take care of this
+  //$scope.getAllPhotosForGame = function() {
+    //console.log("GetAllPhotos")
+    //$scope.photos = [];
+    //GamesFactory.getAllPhotosForGame($rootScope.currentGame.id)
+    //.then(function(photos) {
+      //photos.forEach(function(photo) {
+        //$scope.photos.push(photo);
+      //})
+    //})
+  //};
 
   $scope.selectPhoto = function() {
     $scope.selectedPhoto = this;
-  }
+  };
 
   $scope.chooseWinner = function() {
     GamesFactory.chooseWinner(this.id, $rootScope.currentGame.id)
-  }
+  };
 })
 
 .controller('MyGameCtrl', function($scope, GamesFactory, $rootScope) {

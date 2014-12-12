@@ -124,6 +124,7 @@ angular.module('voto.controllers', [])
   $scope.getAllPhotosForGame = function() {
     console.log("GetAllPhotos")
     $scope.photos = [];
+    //May need to change to currentGame.id
     GamesFactory.getAllPhotosForGame($rootScope.currentGame)
     .then(function(photos) {
       photos.forEach(function(photo) {

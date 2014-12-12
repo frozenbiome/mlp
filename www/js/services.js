@@ -30,13 +30,15 @@ angular.module('voto.services', [])
   };
 
   //Has photo attributes
-  var getPromptData = function (id) {
-    return $http.get(MainUrl.get('/api/prompt/' + id))
+  var getGameData = function (game_id) {
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/1",
+      method: "GET", 
+    })
       .then(function (res) {
         return res.data;
       });
   };
-
 
   //Gets user info from server for a given username. Server creates if not
   //found.
@@ -70,6 +72,7 @@ angular.module('voto.services', [])
   return {
     getAllGamesForUser: getAllGamesForUser,
     getAllGames: getAllGames,
+    getGameData: getGameData,
     getAllPhotosForGame: getAllPhotosForGame,
     getAllPlayingGames: getAllPlayingGames,
     getUserInfo: getUserInfo,
