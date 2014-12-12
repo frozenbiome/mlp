@@ -26,11 +26,16 @@ angular.module('voto.services', [])
     return $http.get("") //TODO: fill out proper get request for username
   }
 
+  var chooseWinner = function(photoID, gameID) {
+    return $http.post("")
+  }
+
   return {
     getAllGamesForUser: getAllGamesForUser,
     getAllGames: getAllGames,
     getAllPhotosForGame: getAllPhotosForGame,
     getUserInfo: getUserInfo,
+    chooseWinner: chooseWinner,
     all: function() {
       return games;
     }

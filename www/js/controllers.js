@@ -88,6 +88,10 @@ angular.module('voto.controllers', [])
     $scope.selectedPhoto = this;
   }
 
+  $scope.chooseWinner = function() {
+    GamesFactory.chooseWinner(this.id, $rootScope.game.id)
+  }
+
 });
 
 
