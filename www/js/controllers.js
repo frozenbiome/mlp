@@ -122,8 +122,8 @@ angular.module('voto.controllers', [])
 
   $scope.submitPhoto = function() {
     alert($scope.imgURI);
-
     console.log("SUBMITPHOTO")
+
     var curr_game = $rootScope.currentGame;
 
     $http({ 

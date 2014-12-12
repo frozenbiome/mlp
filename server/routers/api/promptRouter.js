@@ -123,6 +123,7 @@ promptRouter.get('/playing', function (req, res) {
 //Gets all prompts
 promptRouter.get('/all', function (req, res) {
   console.log("get to /all")
+
   models.Prompt.fetchAll({
     //Grabs all the data about the related winner and user
       withRelated: ['winner', 'user', 'photo']
