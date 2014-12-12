@@ -1,12 +1,12 @@
 <ion-view view-title="Main">
   <ion-content>
    <!--CREATED GAMES-->
-    <div class="item item-divider" ng-init="loginPopup(); getAllGamesForUser()">
+    <div class="item item-divider" ng-init="loginPopup(); getAllGamesForUser(); getAllPlayingGames()">
       Created Games
     </div>
 
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap" ng-click ="saveGameToRootScope()" href="#/tab/myGame/{{game.id}}">
+      <ion-item ng-repeat="game in createdGames.pending" type="item-text-wrap" ng-click ="saveGameToRootScope()" href="#/tab/myGame/{{game.id}}">
         Prompt: {{game.title}}
       </ion-item>
     </ion-list>
@@ -15,7 +15,7 @@
       Playing
     </div>
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap" ng-click ="saveGameToRootScope()" href="#/tab/main/{{game.id}}">
+      <ion-item ng-repeat="game in playingGames" type="item-text-wrap" ng-click ="saveGameToRootScope()" href="#/tab/main/{{game.id}}">
         Prompt: {{game.title}}
         <br> Created by: {{game.user.email}}
       </ion-item>
@@ -25,7 +25,7 @@
       Finished
     </div>
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap" ng-click ="saveGameToRootScope()" href="#/tab/main/{{game.id}}">
+      <ion-item ng-repeat="game in createdGames.closed" type="item-text-wrap" ng-click ="saveGameToRootScope()" href="#/tab/main/{{game.id}}">
         Prompt: {{game.title}}
         <br> Created by: {{game.user.email}}
       </ion-item>

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'voto.services' is found in services.js
 // 'voto.controllers' is found in controllers.js
-angular.module('voto', ['ionic', 'voto.controllers', 'voto.services'])
+angular.module('voto', ['ionic', 'voto.controllers', 'voto.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

@@ -2,10 +2,10 @@ angular.module('voto.services', [])
 
 .factory('GamesFactory', function($location, $http) {
 
-  //Get all games not user-created or not yet submitted to
+  //Get all games that user created 
   var getAllGamesForUser = function(user) {
     //Emulator CAN connect to this IP
-    console.log("USER IS", user)
+    console.log("Getting Created By", user)
     return $http({
       url: "http://10.8.16.232:8000/api/prompt/created",
       method: "GET", 
@@ -13,6 +13,16 @@ angular.module('voto.services', [])
       params: {user_id: user.id}
     })
   };
+
+  var getAllPlayingGames = function(user) {
+    console.log("Getting played by", user)
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/playing",
+      method: "GET", 
+      //Change this to pull from $rootScope
+      params: {user_id: user.id}
+    })
+  };  
 
   //Get all games that a user has created or joined
   var getAllGames = function() {
@@ -52,6 +62,7 @@ angular.module('voto.services', [])
     getAllGamesForUser: getAllGamesForUser,
     getAllGames: getAllGames,
     getAllPhotosForGame: getAllPhotosForGame,
+    getAllPlayingGames: getAllPlayingGames,
     getUserInfo: getUserInfo,
     chooseWinner: chooseWinner,
     all: function() {
@@ -60,9 +71,9 @@ angular.module('voto.services', [])
   }
 })
 
-.factory('Create', function($location) {
+.factory('Create', function($location, $http) {
   var createNewGame = function() {
-    //$http.post data:{creator: '', prompt: ''}
+    // $http.post data:{creator: '', prompt: ''}
   }
   // Some fake testing data
   var games = [{
@@ -79,8 +90,19 @@ angular.module('voto.services', [])
     creator: 'Ash Ketchum'
   }];
 
+  var getAllPublicGames = function(user) {   
+  console.log("USER IS", user)
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/public",
+      method: "GET", 
+      //Change this to pull from $rootScope
+      params: {user_id: user.id}
+    })
+  }
+
   return {
     createNewGame: createNewGame,
+    getAllPublicGames: getAllPublicGames,
     all: function() {
       return games;
     }
