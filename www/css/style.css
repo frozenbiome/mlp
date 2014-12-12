@@ -1,4 +1,9 @@
 /* Empty. Add your own CSS if you like */
 .upload-image {
   width: 100%;
+  max-height: 300px;
+}
+.submittedPhoto {
+  width: 45%;
+  padding: 2%;
 }

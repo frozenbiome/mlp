@@ -7,10 +7,10 @@
       <div class="ifPending" ng-if="!rootScope.currentGame.winner_id">
         <img class="upload-image" ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
         <img class="upload-image" ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
-        <button class="button button-block button-assertive" ng-click="takePicture()">Snap</button>
-        <button type="button" class="button button-block button-positive" ng-click="selectPicture()">
-          Upload
-        </button>
+        <div class="button-bar">
+          <a class="button button-assertive" ng-click="takePicture()">Snap</a>
+          <a class="button button-assertive"  ng-click="selectPicture()">Upload</a>
+        </div>
       </div>
 
       <button type="button" class="button button-block button-positive" ng-click="submitPhoto()">
@@ -19,15 +19,15 @@
 
     </div>
 
-
-	<div class="ifCompleted" ng-if="rootScope.currentGame.winner_id" ng-init="getGameData()">
-		<h3 align="center"> Winner! </h3><br/>
-		<img class="winningPhoto" ng-src="media/square-500px/{{currentGame.winner.filename}}"/><br/> <!-- Winning image -->
-		<h4 align="center"> Other Submissions </h4>
-		<span class="submission" ng-repeat="photo in photos">
-			<img class="submittedPhoto" ng-src="media/square-200px/{{photo.filename}}" /> <!-- Add image file path -->
-		</span>
-	</div>
+    <div class="ifCompleted" ng-if="rootScope.currentGame.winner_id" ng-init="getAllPhotosForGame()">
+      <h3> Winner! </h3>
+      <br/>
+      <img src="" />
+      <br/>
+      <!-- Winning image -->
+      <h4> Other Submissions </h4>
+      <span class="submission" ng-repeat="photo in photos" ng-click="selectPhoto()"></span>
+    </div>
 
   </ion-content>
 </ion-view>
