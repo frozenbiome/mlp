@@ -7,10 +7,10 @@
 // 'voto.controllers' is found in controllers.js
 angular.module('voto', [
     'ionic', 
+    //'angularFileUpload',
     'voto.controllers', 
     'voto.services', 
     'ngCordova',
-    'angularFileUpload',
 ])
 
 .run(function($ionicPlatform) {

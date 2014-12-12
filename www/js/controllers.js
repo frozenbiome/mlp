@@ -1,7 +1,7 @@
 angular.module('voto.controllers', [])
 
 
-.controller('MainCtrl', function($scope, $rootScope, GamesFactory, $ionicPopup, $upload) {
+.controller('MainCtrl', function($scope, $rootScope, GamesFactory, $ionicPopup) {
   //Auth.isAuth();
   //$scope.signOut = Auth.signOut;
   //$scope.limitChar = function (string, limit) {
@@ -10,7 +10,7 @@ angular.module('voto.controllers', [])
   //
 
   $scope.saveGameToRootScope = function (game) {
-    console.log(game)
+    console.log("Saving game to scope: ", game)
     $rootScope.currentGame = game;
   }
 
@@ -96,7 +96,7 @@ angular.module('voto.controllers', [])
 
 })
 
-.controller('GameCtrl', function($scope, $rootScope, GamesFactory, $cordovaCamera) {
+.controller('GameCtrl', function($scope, $rootScope, $http, GamesFactory, $cordovaCamera) {
    $scope.takePicture = function() {
     var options = { 
         quality : 75, 
@@ -122,7 +122,43 @@ angular.module('voto.controllers', [])
 
   $scope.submitPhoto = function() {
     alert($scope.imgURI);
-    console.log('submitted')
+
+    console.log("SUBMITPHOTO")
+    var curr_game = $rootScope.currentGame;
+
+    $http({ 
+      url: "http://10.8.16.232:8000/api/photo",
+      method: "POST", 
+      params: {
+        prompt_id: curr_game.id,
+        user_id: $rootScope.user,
+        //prompt_id: 1,
+        //user_id: 2,
+        image_string: $scope.imgURI
+      }
+    })
+    .success(function(data, status, headers, config) {
+      console.log("DATA", data);
+    })
+    .error(function(error) {
+      console.log("ERROR", error);
+    })
+/*    $scope.upload = $upload.upload({*/
+        //url: '/api/photo',
+        //method: 'POST',
+        //data: {
+          //prompt_id: $scope.id,
+          //user_id: Auth.getUserId(),
+          //image_data: image.src
+        //},
+      //})
+    //.success(function (data, status, headers, config) {
+        //console.log(data);
+        //$state.reload();
+      //}).error(function (err) {
+        //console.log('ERROR:', err);
+      //})
+
   };
 
   $scope.getGameData = function() {
@@ -159,10 +195,5 @@ angular.module('voto.controllers', [])
 
 
 });
-
-
-
-
-
 
 
