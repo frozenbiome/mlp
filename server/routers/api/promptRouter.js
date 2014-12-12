@@ -120,13 +120,17 @@ promptRouter.get('/playing', function (req, res) {
   });
 });
 
-//Gets all prompts
+//Gets all prompts not made by a user
 promptRouter.get('/all', function (req, res) {
   console.log("get to /all")
 
+  
+  var user_id = parseInt(req.query.user_id);
+  console.log("GET TO ALL USER ID", user_id);
+
   models.Prompt.fetchAll({
     //Grabs all the data about the related winner and user
-      withRelated: ['winner', 'user', 'photo']
+      withRelated: ['winner', 'user', 'photos']
     })
     .then(function (collection) {
       var result = {
@@ -135,7 +139,35 @@ promptRouter.get('/all', function (req, res) {
         pending: [],
         closed: []
       };
-      var timeNow = Date.now();
+
+      collection.forEach(function(prompt) {
+        //If game was not created by user, push to all
+        if (prompt.get('user_id') !== user_id) {
+          result['all'].push(prompt);
+          
+          //If game is open
+          if (prompt.get('winner_id') === null) {
+            //Push to open array
+            result['open'].push(prompt);
+
+            //Grab all photos for game, if any are owned by user, 
+            prompt.related('photos').forEach(function(photo) {
+              if (photo.get('user_id') === user_id) {
+                prompt['submitted'] = true;
+              } else {
+                prompt['submitted'] = false;
+              }
+            })
+
+
+          } else {
+            //Else, game is closed, push to closed
+            result['closed'].push(prompt);
+          }
+        }
+        
+      });
+      //var timeNow = Date.now();
       // collection.forEach(function (prompt) {
         // var isEnded = (prompt.get('endTime') - timeNow) < 0;
         // var isVoteEnded = (prompt.get('votingEndTime') - timeNow) < 0;
