@@ -9,8 +9,9 @@ angular.module('voto.controllers', [])
   //};
   //
 
-  $scope.saveGameToRootScope = function () {
-    $rootScope.currentGame = this;
+  $scope.saveGameToRootScope = function (game) {
+    console.log(game)
+    $rootScope.currentGame = game;
   }
 
   //Gets all games user created
