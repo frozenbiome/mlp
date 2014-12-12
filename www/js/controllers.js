@@ -8,15 +8,19 @@ angular.module('voto.controllers', [])
     //return (string.length < limit) ? string : string.substr(0, limit) + "...";
   //};
   //
-  $rootScope.user = 'jorge.silva@thejsj.com';
-  GamesFactory.getAllGamesForUser($rootScope.user)
-    .then(function(res) {
-      $scope.games = res.data.all;
-      console.log("getAllGamesForUser: ", res.data);
-    });
 
   $scope.saveGameToRootScope = function () {
     $rootScope.currentGame = this;
+  }
+
+  $scope.getAllGamesForUser = function () {
+    if ($rootScope.user) {
+      GamesFactory.getAllGamesForUser($rootScope.user)
+      .then(function(res) {
+        $scope.games = res.data.all;
+        console.log("getAllGamesForUser: ", res.data);
+      });
+    }
   }
 
   $scope.loginPopup = function() {
@@ -41,7 +45,7 @@ angular.module('voto.controllers', [])
         GamesFactory.getUserInfo($scope.data.username)
         .then(function(user) {
           $rootScope.user = user
-          console.log($rootScope.user);
+          $scope.getAllGamesForUser();
         })
       });
     }
