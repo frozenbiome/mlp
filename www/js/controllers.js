@@ -40,7 +40,8 @@ angular.module('voto.controllers', [])
       myPopup.then(function(res) {
         GamesFactory.getUserInfo($scope.data.username)
         .then(function(user) {
-          ($rootScope.user = user)
+          $rootScope.user = user
+          console.log($rootScope.user);
         })
       });
     }

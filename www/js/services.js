@@ -2,14 +2,6 @@ angular.module('voto.services', [])
 
 .factory('GamesFactory', function($location, $http) {
 
-  var getUserId = function(user) {
-    return $http({
-      url: "http://10.8.16.232:8000/api/prompt/user",
-      method: "GET", 
-      params: {user: user}
-    })
-  }
-
   //Get all games not user-created or not yet submitted to
   var getAllGamesForUser = function(user) {
     //Emulator CAN connect to this IP
@@ -26,12 +18,17 @@ angular.module('voto.services', [])
     return $http.get("http://10.8.16.232:8000/api/prompt/all");
   };
 
-  var getAllPhotosForGame = function(gameID) {
-    return $http.get("") //TODO: fill out proper get request for gameID
-  }
 
   var getUserInfo = function(username) {
-    return $http.get("") //TODO: fill out proper get request for username
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/user",
+      method: "GET", 
+      params: {user: username}
+    }).then(function(res) {return res.data;});
+  }
+
+  var getAllPhotosForGame = function(gameID) {
+    return $http.get("") //TODO: fill out proper get request for gameID
   }
 
   var chooseWinner = function(photoID, gameID) {
