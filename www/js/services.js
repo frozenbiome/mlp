@@ -60,11 +60,11 @@ angular.module('voto.services', [])
 
   var chooseWinner = function(photoID, gameID) {
     return $http({ 
-      url: "http://10.8.16.232:8000/", //TODO: fill out proper post request for updating winner category in game model
-      method: "PUT", 
-      params: {
-        game: gameID,
-        photo: photoID
+      url: "http://10.8.16.232:8000/api/prompt/winner", //TODO: fill out proper post request for updating winner category in game model
+      method: "POST", 
+      data: {
+        photoID: photoID,
+        gameID: gameID
       }
     }).then(function(res) {return res.data;});
   }

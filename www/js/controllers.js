@@ -168,11 +168,15 @@ angular.module('voto.controllers', [])
 
   $scope.getGameData = function() {
     GamesFactory.getGameData($rootScope.currentGame.id)
-      .then(function(data) {
-        console.log("Server Game Data", data)
-        $scope.game = data;
-        $scope.dataLoaded = true;
+    .then(function(data) {
+      console.log("Server Game Data", data)
+      $scope.game = data;
+      $scope.game.photos.forEach(function(photo) {
+        if (photo.user_id === $rootScope.user.id) {
+          $scope.userSubmission = photo;
+        }
       })
+    })
   };
 
   //Maybe not necessary, as getGameData should take care of this
@@ -193,7 +197,7 @@ angular.module('voto.controllers', [])
   };
 
   $scope.chooseWinner = function() {
-    GamesFactory.chooseWinner(this.id, $rootScope.currentGame.id)
+    GamesFactory.chooseWinner($scope.selectedPhoto.id, $rootScope.currentGame.id)
   };
 })
 

@@ -4,13 +4,9 @@
       <h1 align="center">"{{currentGame.title}}"</h1>
 
       <!-- Camera/Upload View and Re -->
-      <div class="ifPending" ng-if="!rootScope.currentGame.winner_id">
-        <img class="upload-image" ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-        <img class="upload-image" ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
-        <div class="button-bar">
-          <a class="button button-assertive" ng-click="takePicture()">Snap</a>
-          <a class="button button-assertive"  ng-click="selectPicture()">Upload</a>
-        </div>
+      <div class="ifPending" ng-if="!rootScope.currentGame.winner_id" ng-init="getGameData()">
+        <h3 align="center"> Your Submission </h3>
+        <image class="userSubmission" ng-src="http://10.8.16.232:8000/media/square-500px/{{userSubmission.filename}}"/>
       </div>
 
       <button type="button" class="button button-block button-positive" ng-click="submitPhoto()">
@@ -20,11 +16,11 @@
     </div>
 
     <div class="ifCompleted" ng-if="rootScope.currentGame.winner_id" ng-init="getGameData()">
+      <p ng-if="{{currentGame.winner}}&&{{currentGame.winner}} !== {{userSubmission}}"
       <h3> Winner! </h3>
       <br/>
-      <img src="" />
+      <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{currentGame.winner.filename}}"/>
       <br/>
-      <!-- Winning image -->
       <h4> Other Submissions </h4>
       <span class="submission" ng-repeat="photo in photos" ng-click="selectPhoto()"></span>
     </div>

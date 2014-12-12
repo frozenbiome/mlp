@@ -15,7 +15,7 @@
       Playing
     </div>
     <ion-list>
-      <ion-item ng-repeat="game in playingGames" type="item-text-wrap" ng-click="saveGameToRootScope(game)" href="#/tab/main/{{game.id}}">
+      <ion-item ng-repeat="game in playingGames" type="item-text-wrap" ng-click="saveGameToRootScope(game)" href="#/tab/playing/{{game.id}}">
         Prompt: {{game.title}}
         <br> Created by: {{game.user.email}}
       </ion-item>
@@ -25,7 +25,7 @@
       Finished
     </div>
     <ion-list>
-      <ion-item ng-repeat="game in createdGames.closed" type="item-text-wrap" ng-click="saveGameToRootScope(game)" href="#/tab/main/{{game.id}}">
+      <ion-item ng-repeat="game in createdGames.closed" type="item-text-wrap" ng-click="saveGameToRootScope(game)" href="#/tab/playing/{{game.id}}">
         Prompt: {{game.title}}
         <br> Created by: {{game.user.email}}
       </ion-item>

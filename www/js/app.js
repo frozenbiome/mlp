@@ -103,6 +103,16 @@ angular.module('voto', [
           controller: 'GameCtrl'
         }
       }
+    })
+
+    .state('tab.main-playing', {
+      url: "/playing/:gameId",
+      views: {
+        'tab-main' :{
+          templateUrl: "templates/playing-game.html",
+          controller: 'GameCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
