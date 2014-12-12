@@ -98,7 +98,7 @@ angular.module('voto.controllers', [])
 
 })
 
-.controller('GameCtrl', function($scope, $rootScope, $http, GamesFactory, $cordovaCamera, $ionicLoading) {
+.controller('GameCtrl', function($scope, $rootScope, $http, GamesFactory, $cordovaCamera, $ionicLoading, $ionicViewService) {
   $scope.takePicture = function() {
     var options = {
       quality: 75,
@@ -145,6 +145,7 @@ angular.module('voto.controllers', [])
     console.log("SUBMITPHOTO")
 
     var curr_game = $rootScope.currentGame;
+    var backView = $ionicViewService.getBackView();
 
     $http({
         url: "http://10.8.16.232:8000/api/photo",
@@ -160,6 +161,7 @@ angular.module('voto.controllers', [])
       .success(function(data, status, headers, config) {
         alert("SUBMIT SUCCESS", data)
         console.log("DATA", data);
+        backView && backView.go();
       })
       .error(function(error) {
         alert("SUBMIT ERROR", error);
