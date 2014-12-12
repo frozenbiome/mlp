@@ -22,7 +22,7 @@ angular.module('voto.controllers', [])
   $scope.loginPopup = function() {
     $scope.data = {}
 
-    if (!$rootScope.username) {
+    if (!$rootScope.user) {
       var myPopup = $ionicPopup.show({
         template: '<input type="text" ng-model="data.username">',
         title: 'Pick a Name',
