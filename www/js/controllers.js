@@ -67,6 +67,11 @@ angular.module('voto.controllers', [])
 .controller('CreateCtrl', function($scope, $rootScope, Create) {
   $scope.games = Create.all();
 
+  $scope.saveGameToRootScope = function(game) {
+    console.log("Saving game to scope: ", game)
+    $rootScope.currentGame = game;
+  }
+
   $scope.getAllPublicGames = function() {
 
     Create.getAllPublicGames($rootScope.user)
