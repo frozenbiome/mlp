@@ -64,13 +64,13 @@ angular.module('voto.controllers', [])
 })
 
 .controller('CreateViewCtrl', function($scope, $ionicViewService, Create) {
-  $scope.createNewGame = function(topic) {
+  $scope.createNewGame = function(propmt) {
     var backView = $ionicViewService.getBackView();
     backView && backView.go();
     // $location.path('/main');
-    this.topic = topic;
-    console.log(this.topic);
-    Create.createNewGame()
+    var propmt = this.propmt;
+    console.log(propmt);
+    Create.createNewGame(propmt)
   }
 })
 

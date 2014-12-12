@@ -62,7 +62,7 @@ angular.module('voto.services', [])
 
 .factory('Create', function($location) {
   var createNewGame = function() {
-    //$http.post data:{creator: '', prompt: ''}
+    // $http.post data:{creator: '', prompt: ''}
   }
   // Some fake testing data
   var games = [{
