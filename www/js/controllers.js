@@ -30,8 +30,8 @@ angular.module('voto.controllers', [])
     if ($rootScope.user) {
       GamesFactory.getAllPlayingGames($rootScope.user)
         .then(function(res) {
+          console.log("PLAYING GAMES: ", res.data)
           $scope.playingGames = res.data;
-          console.log("Games User Submitted to: ", res.data);
         });
     }
   }

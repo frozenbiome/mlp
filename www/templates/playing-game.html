@@ -1,22 +1,18 @@
 <ion-view view-title="GameView">
   <ion-content ng-controller="GameCtrl">
     <div class="padding">
-      <h1 align="center">"{{currentGame.title}}"</h1>
+      <h1 align="center" ng-init="getGameData()">"{{currentGame.title}}"</h1>
 
       <!-- Camera/Upload View and Re -->
-      <div class="ifPending" ng-if="!rootScope.currentGame.winner_id" ng-init="getGameData()">
+      <div class="ifPending" >
         <h3 align="center"> Your Submission </h3>
         <image class="userSubmission" ng-src="http://10.8.16.232:8000/media/square-500px/{{userSubmission.filename}}"/>
       </div>
 
-      <button type="button" class="button button-block button-positive" ng-click="submitPhoto()">
-        Submit
-      </button>
-
     </div>
-
-    <div class="ifCompleted" ng-if="rootScope.currentGame.winner_id" ng-init="getGameData()">
-      <p ng-if="{{currentGame.winner}}&&{{currentGame.winner}} !== {{userSubmission}}"
+    
+    <div class="ifCompleted" ng-if="!!{{rootScope.currentGame.winner_id}}">
+      <p ng-if="{{currentGame.winner}}&&{{currentGame.winner}} !== {{userSubmission}}"></p>
       <h3> Winner! </h3>
       <br/>
       <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{currentGame.winner.filename}}"/>
