@@ -112,7 +112,7 @@ angular.module('voto.controllers', [])
 
     $cordovaCamera.getPicture(options)
       .then(function(imageData) {
-          $scope.imgURI = "data:image/jpeg;base64," + imageData;
+          $scope.imgURI = "data:image/png;base64," + imageData;
       })
       .catch(function(err) {
         // An error occured. Show a message to the user
