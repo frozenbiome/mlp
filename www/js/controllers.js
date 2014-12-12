@@ -81,14 +81,14 @@ angular.module('voto.controllers', [])
 
 })
 
-.controller('CreateViewCtrl', function($scope, $ionicViewService, Create) {
+.controller('CreateViewCtrl', function($scope, $rootScope, $ionicViewService, Create) {
   $scope.createNewGame = function(prompt) {
     var backView = $ionicViewService.getBackView();
     backView && backView.go();
     // $location.path('/main');
     var prompt = this.prompt;
-    console.log(prompt);
-    Create.createNewGame(prompt)
+    console.log($rootScope.user.id, prompt);
+    Create.createNewGame($rootScope.user.id, prompt)
   }
 })
 
@@ -144,8 +144,8 @@ angular.module('voto.controllers', [])
     //})
   //};
 
-  $scope.selectPhoto = function() {
-    $scope.selectedPhoto = this;
+  $scope.selectPhoto = function(photo) {
+    $scope.selectedPhoto = photo;
   };
 
   $scope.chooseWinner = function() {

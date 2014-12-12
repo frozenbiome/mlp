@@ -154,9 +154,9 @@ promptRouter.get('/all', function (req, res) {
 
 promptRouter.post('/', function (req, res) {
   var title = req.body.title || req.param('title');
-  var startTime = req.body.startTime || req.param('startTime');
-  var endTime = req.body.endTime || req.param('endTime');
-  var votingEndTime = req.body.votingEndTime || req.param('votingEndTime');
+  // var startTime = req.body.startTime || req.param('startTime');
+  // var endTime = req.body.endTime || req.param('endTime');
+  // var votingEndTime = req.body.votingEndTime || req.param('votingEndTime');
   var userId = req.body.userId || req.param('userId');
   collections.Users
     .query('where', 'id', '=', userId)
@@ -165,7 +165,8 @@ promptRouter.post('/', function (req, res) {
       if (!model) {
         throw new Error('User not Found');
       }
-      if (!title || !startTime || !endTime || !votingEndTime || !userId) {
+      // if (!title || !startTime || !endTime || !votingEndTime || !userId) {
+      if (!title || !userId) {
         throw new Error('Not All Fields Entered');
       }
       return true;
@@ -174,9 +175,9 @@ promptRouter.post('/', function (req, res) {
       return new models.Prompt({
           title: title,
           user_id: userId, // We really need to normalize these
-          startTime: startTime,
-          endTime: endTime,
-          votingEndTime: votingEndTime
+          // startTime: startTime,
+          // endTime: endTime,
+          // votingEndTime: votingEndTime
         })
         .save();
     })
@@ -227,7 +228,7 @@ promptRouter.get('/:id', function (req, res) {
 });
 
 promptRouter.put('/:id', function (req, res) {
-  var winnerId = req.body.photoId;
+  var winnerId = req.body.photoID;
   collections.Prompts
     .query('where', 'id', '=', req.param('id'))
     .fetchOne()

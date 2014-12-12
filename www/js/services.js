@@ -61,7 +61,7 @@ angular.module('voto.services', [])
   var chooseWinner = function(photoID, gameID) {
     return $http({ 
       url: "http://10.8.16.232:8000/", //TODO: fill out proper post request for updating winner category in game model
-      method: "POST", 
+      method: "PUT", 
       params: {
         game: gameID,
         photo: photoID
@@ -84,8 +84,18 @@ angular.module('voto.services', [])
 })
 
 .factory('Create', function($location, $http) {
-  var createNewGame = function() {
-    // $http.post data:{creator: '', prompt: ''}
+  var createNewGame = function(userID, prompt) {
+    $http({
+      url: "http://10.8.16.232:8000/api/prompt/",
+      method: 'POST',
+      data: {
+        userId: userID, 
+        title: prompt,
+        // startTime: moment(),
+        // endTime: moment().add(4, 'h'),
+        // votingEndTime: moment().add(6, 'h'),
+      }
+    })
   }
   // Some fake testing data
   var games = [{

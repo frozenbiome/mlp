@@ -1,7 +1,7 @@
 <ion-view view-title="GameView">
   <ion-content ng-controller="GameCtrl">
 	<div class="padding">
-	  <h1 align="center">"Prompt"</h1>
+	  <h1 align="center">"{{currentGame.title}}"</h1>
 
 	  <!-- Camera/Upload View and Re -->
 	  <div class="ifPending" ng-if="!rootScope.currentGame.winner_id">
