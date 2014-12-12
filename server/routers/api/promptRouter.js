@@ -123,7 +123,6 @@ promptRouter.get('/playing', function (req, res) {
 //Gets all prompts not made by a user
 promptRouter.get('/all', function (req, res) {
   console.log("get to /all")
-
   
   var user_id = parseInt(req.query.user_id);
   console.log("GET TO ALL USER ID", user_id);
@@ -134,7 +133,7 @@ promptRouter.get('/all', function (req, res) {
     })
     .then(function (collection) {
       var result = {
-        all: collection.toJSON(),
+        all: [],
         open: [],
         pending: [],
         closed: []

@@ -137,7 +137,6 @@ angular.module('voto.controllers', [])
   };
 
   $scope.submitPhoto = function() {
-    alert($scope.imgURI);
     console.log("SUBMITPHOTO")
 
     var curr_game = $rootScope.currentGame;
@@ -154,27 +153,12 @@ angular.module('voto.controllers', [])
         }
       })
       .success(function(data, status, headers, config) {
+        alert("SUBMIT SUCCESS", data)
         console.log("DATA", data);
       })
       .error(function(error) {
-        console.log("ERROR", error);
+        alert("SUBMIT ERROR", error);
       })
-      /*    $scope.upload = $upload.upload({*/
-      //url: '/api/photo',
-      //method: 'POST',
-      //data: {
-      //prompt_id: $scope.id,
-      //user_id: Auth.getUserId(),
-      //image_data: image.src
-      //},
-      //})
-      //.success(function (data, status, headers, config) {
-      //console.log(data);
-      //$state.reload();
-      //}).error(function (err) {
-      //console.log('ERROR:', err);
-      //})
-
   };
 
   $scope.getGameData = function() {
