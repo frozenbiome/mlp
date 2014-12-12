@@ -1,11 +1,11 @@
 <ion-view view-title="Create">
   <ion-content>
 
-    <div class="item item-divider">
+    <div class="item item-divider" ng-init="getAllPublicGames">
       Pick & Play
   </div>
     <ion-list>
-      <ion-item ng-repeat="game in games" type="item-text-wrap">
+      <ion-item ng-repeat="game in publicGames" type="item-text-wrap">
         Prompt: {{game.prompt}}
         <br>
         Created by: {{game.creator}}

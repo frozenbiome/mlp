@@ -27,7 +27,7 @@ angular.module('voto.controllers', [])
     if ($rootScope.user) {
       GamesFactory.getAllPlayingGames($rootScope.user)
       .then(function(res) {
-        $scope.playingGames = res.data.all;
+        $scope.playingGames = res.data;
         console.log("Playing Games: ", res.data);
       });
     }
@@ -56,6 +56,7 @@ angular.module('voto.controllers', [])
         .then(function(user) {
           $rootScope.user = user
           $scope.getAllGamesForUser();
+          $scope.getAllPlayingGames();
         })
       });
     }
@@ -63,8 +64,17 @@ angular.module('voto.controllers', [])
 
 })
 
-.controller('CreateCtrl', function($scope, Create) {
+.controller('CreateCtrl', function($scope, $rootScope, Create) {
   $scope.games = Create.all();
+
+  $scope.getAllPublicGames = function () {
+    Create.getAllPublicGames($rootScope.user)
+    .then(function(res) {
+      $scope.publicGames = res.data;
+      console.log("Public Games: ", res.data);
+    });
+  }
+
 })
 
 .controller('CreateViewCtrl', function($scope, $ionicViewService, Create) {
