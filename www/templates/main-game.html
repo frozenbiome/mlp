@@ -1,27 +1,33 @@
 <ion-view view-title="GameView">
   <ion-content ng-controller="GameCtrl">
-	<div class="padding">
-	  <h1 align="center">"{{currentGame.title}}"</h1>
+    <div class="padding">
+      <h1 align="center">"{{currentGame.title}}"</h1>
 
-	  <!-- Camera/Upload View and Re -->
-	  <div class="ifPending" ng-if="!rootScope.currentGame.winner_id">
-		<img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-    	<img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
-    	<button class="button button-block button-assertive" ng-click="takePicture()">Snap</button>
-	  </div>
+      <!-- Camera/Upload View and Re -->
+      <div class="ifPending" ng-if="!rootScope.currentGame.winner_id">
+        <img class="upload-image" ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+        <img class="upload-image" ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
+        <button class="button button-block button-assertive" ng-click="takePicture()">Snap</button>
+        <button type="button" class="button button-block button-positive" ng-click="selectPicture()">
+          Upload
+        </button>
+      </div>
 
       <button type="button" class="button button-block button-positive" ng-click="submitPhoto()">
-  	  	Submit
-  	  </button>
+        Submit
+      </button>
 
-	</div>
+    </div>
 
-	<div class="ifCompleted" ng-if="rootScope.currentGame.winner_id" ng-init="getAllPhotosForGame()">
-		<h3> Winner! </h3><br/>
-		<img src=""/><br/> <!-- Winning image -->
-		<h4> Other Submissions </h4>
-		<span class="submission" ng-repeat="photo in photos" ng-click="selectPhoto()"></span>
-	</div>
+    <div class="ifCompleted" ng-if="rootScope.currentGame.winner_id" ng-init="getAllPhotosForGame()">
+      <h3> Winner! </h3>
+      <br/>
+      <img src="" />
+      <br/>
+      <!-- Winning image -->
+      <h4> Other Submissions </h4>
+      <span class="submission" ng-repeat="photo in photos" ng-click="selectPhoto()"></span>
+    </div>
 
   </ion-content>
 </ion-view>
