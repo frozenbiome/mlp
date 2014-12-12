@@ -12,11 +12,13 @@ var imageMagick = Promise.promisifyAll(require('imagemagick'));
 
 var photoRouter = express.Router();
 
+//Expects photo to be base64 data URI
 photoRouter.post('/', function (req, res) {
   var form = new multiparty.Form();
   form.parse(req, function (err, fields, files) {
     // Write File To File System
     var userId, promptId, filePath, base64Data;
+
     if (typeof fields === 'object') {
       userId = fields.user_id[0] || fields.user_id;
       promptId = fields.prompt_id[0] || fields.prompt_id;
@@ -29,14 +31,17 @@ photoRouter.post('/', function (req, res) {
       } else {
         res.status(404).end();
       }
+
     } else {
       userId = req.body.user_id;
       promptId = req.body.prompt_id;
       filePath = req.body['image[path]'] || null;
       imageString = req.body.image_string || null;
     }
+
     var name = '' + userId + '-' + promptId + '-' + moment().format('x');
     var newImageFileName, newPath, new200pth, new500Path, fileExtension;
+
     Q().then(function () {
         if (filePath !== null && filePath !== undefined) {
           filePath = path.resolve(filePath);
@@ -98,6 +103,7 @@ photoRouter.get('/', function (req, res) {
     });
 });
 
+//Should get all photos related to a prompt_id
 photoRouter.get('/:id', function (req, res) {
   collections.Photos // Doesn't seem to be working
     .query('where', 'id', '=', req.param('id'))

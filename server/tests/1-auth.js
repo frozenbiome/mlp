@@ -9,7 +9,7 @@ describe('Auth', function () {
       request
         .post('http://localhost:8000/signup')
         .form({
-          email: 'jorge.silva@thejsj.com',
+          email: 'z',
           password: 'ilovebrian'
         })
         .on('response', function (response) {
@@ -22,7 +22,7 @@ describe('Auth', function () {
       request
         .post('http://localhost:8000/login')
         .form({
-          email: 'jorge.silva@thejsj.com',
+          email: 'z',
           password: 'ilovebrian'
         })
         .on('response', function (response) {
@@ -36,7 +36,7 @@ describe('Auth', function () {
         .post({
           url: 'http://localhost:8000/login',
           form: {
-            email: 'jorge.silva@thejsj.com',
+            email: 'z',
             password: 'ilovebrian'
           }
         }, function (error, response, body) {
@@ -49,7 +49,7 @@ describe('Auth', function () {
       request
         .post('http://localhost:8000/login')
         .form({
-          email: 'jorge.silva.jetter@thejsj.com',
+          email: 'z',
           password: 'idonotlovebrian'
         })
         .on('response', function (response) {

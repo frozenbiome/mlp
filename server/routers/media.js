@@ -8,6 +8,7 @@ var mediaPath = path.join(__dirname + '/../media/');
 mediaRouter.use(express.static(mediaPath));
 
 mediaRouter.get('/:id', function (req, res) {
+  console.log("MEDIA GET")
   collections.Photos
     .query('where', 'id', '=', req.param('id'))
     .fetchOne()

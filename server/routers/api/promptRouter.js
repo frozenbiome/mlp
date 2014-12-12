@@ -61,12 +61,15 @@ promptRouter.get('/created', function (req, res) {
       collection.forEach(function(prompt) {
         //Push if it was created by user
         if (prompt.get('user_id') === user_id) {
+          console.log("1")
           result['all'].push(prompt.toJSON());
 
           //Push to open if there's no winner id, and closed if there is
           if(prompt.get('winner_id') === null) {
+            console.log("2")
             result['open'].push(prompt.toJSON());
           } else {
+            console.log("3")
             result['closed'].push(prompt.toJSON());
           }
 
@@ -99,12 +102,15 @@ promptRouter.get('/playing', function (req, res) {
         
         //Grab related prompt object. AWESUM KEWL
         var game = photo.related('prompt');
+        console.log("4")
         result['all'].push(game.toJSON());
 
         //Push to open if there's no winner id, and closed if there is
         if(game.get('winner_id') === null) {
+          console.log("5")
           result['open'].push(game.toJSON());
         } else {
+          console.log("6")
           result['closed'].push(game.toJSON());
         }
 
