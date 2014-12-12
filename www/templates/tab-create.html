@@ -5,10 +5,10 @@
       Pick & Play
   </div>
     <ion-list>
-      <ion-item ng-repeat="game in publicGames" type="item-text-wrap" ng-click ="saveGameToRootScope(game)" href="#/tab/main/{{game.id}}">
-        Prompt: {{game.prompt}}
+      <ion-item ng-repeat="game in publicGames.all" type="item-text-wrap" ng-click ="saveGameToRootScope(game)" href="#/tab/main/{{game.id}}">
+        Prompt: {{game.title}}
         <br>
-        Created by: {{game.creator}}
+        Created by: {{game.user.email}}
       </ion-item>
     </ion-list>
 
