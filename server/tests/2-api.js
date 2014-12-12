@@ -29,7 +29,7 @@ describe('API', function () {
         .post({
           url: 'http://localhost:8000/login',
           form: {
-            email: 'jorge.silva@thejsj.com',
+            email: 'z',
             password: 'ilovebrian'
           }
         }, function (err, response, body) {

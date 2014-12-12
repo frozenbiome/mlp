@@ -15,8 +15,7 @@ angular.module('voto.services', [])
   };
 
   var getAllPlayingGames = function(user) {
-    //Emulator CAN connect to this IP
-    console.log("USER IS", user)
+    console.log("Getting played by", user)
     return $http({
       url: "http://10.8.16.232:8000/api/prompt/playing",
       method: "GET", 

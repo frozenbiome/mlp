@@ -13,22 +13,24 @@ angular.module('voto.controllers', [])
     $rootScope.currentGame = this;
   }
 
+  //Gets all games user created
   $scope.getAllGamesForUser = function () {
     if ($rootScope.user) {
       GamesFactory.getAllGamesForUser($rootScope.user)
       .then(function(res) {
         $scope.createdGames = res.data;
-        console.log("getAllGamesForUser: ", res.data);
+        console.log("Games User Created: ", res.data);
       });
     }
   }
 
+  //Gets all games user submitted to
   $scope.getAllPlayingGames = function () {
     if ($rootScope.user) {
       GamesFactory.getAllPlayingGames($rootScope.user)
       .then(function(res) {
         $scope.playingGames = res.data;
-        console.log("Playing Games: ", res.data);
+        console.log("Games User Submitted to: ", res.data);
       });
     }
   }
@@ -54,7 +56,7 @@ angular.module('voto.controllers', [])
       myPopup.then(function(res) {
         GamesFactory.getUserInfo($scope.data.username)
         .then(function(user) {
-          $rootScope.user = user
+          $rootScope.user = user;
           $scope.getAllGamesForUser();
           $scope.getAllPlayingGames();
         })

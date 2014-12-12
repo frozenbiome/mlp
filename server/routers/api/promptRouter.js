@@ -62,10 +62,14 @@ promptRouter.get('/created', function (req, res) {
         //Push if it was created by user
         if (prompt.get('user_id') === user_id) {
           result['all'].push(prompt.toJSON());
-          //Push to closed if there's a winner id
-          if(prompt.get('winner_id') !== undefined) {
+
+          //Push to open if there's no winner id, and closed if there is
+          if(prompt.get('winner_id') === null) {
+            result['open'].push(prompt.toJSON());
+          } else {
             result['closed'].push(prompt.toJSON());
           }
+
         }
       });
       res.json(result);
@@ -73,9 +77,7 @@ promptRouter.get('/created', function (req, res) {
 });
 
 //Should get all games that a user has submitted to
-promptRouter.get('/submitted', function (req, res) {
-  // 1. Query all photoos where user_id is userId, bringing in prompts data
-  // 2. Loop through those and only push ones without a winner_id set
+promptRouter.get('/playing', function (req, res) {
   var user_id = parseInt(req.query.user_id);
   console.log("GET TO /SUBMITTED")
 
@@ -91,17 +93,23 @@ promptRouter.get('/submitted', function (req, res) {
       closed: []
     };
 
-    console.log("SUbMITTED ROUTE", collection)
-    //collection.forEach(function(photo) {
-      ////Push if it was created by user
-      //if (photo.get('user_id') === user_id) {
-        //result['all'].push(photo.toJSON());
-        ////Push to closed if there's a winner id
-        //if(photo.get('winner_id') !== undefined) {
-          //result['closed'].push(photo.toJSON());
-        //}
-      //}
-    //});
+    collection.forEach(function(photo) {
+      //If it was created by user
+      if (photo.get('user_id') === user_id) {
+        
+        //Grab related prompt object. AWESUM KEWL
+        var game = photo.related('prompt');
+        result['all'].push(game.toJSON());
+
+        //Push to open if there's no winner id, and closed if there is
+        if(game.get('winner_id') === null) {
+          result['open'].push(game.toJSON());
+        } else {
+          result['closed'].push(game.toJSON());
+        }
+
+      }
+    });
     res.json(result);
   });
 });
