@@ -49,7 +49,14 @@ angular.module('voto.controllers', [])
         })
       });
     }
-  };
+  }();
+
+  GamesFactory.getAllGamesForUser($rootScope.user)
+    .then(function(res) {
+      $scope.games = res.data.all;
+      console.log("getAllGamesForUser: ", res.data);
+    });
+
 })
 
 .controller('CreateCtrl', function($scope, Create) {

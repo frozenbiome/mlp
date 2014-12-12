@@ -9,7 +9,8 @@ angular.module('voto.services', [])
     return $http({
       url: "http://10.8.16.232:8000/api/prompt/created",
       method: "GET", 
-      params: {user_id: 1}
+      //Change this to pull from $rootScope
+      params: {user_id: user.id}
     })
   };
 
