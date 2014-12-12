@@ -88,7 +88,7 @@ angular.module('voto', [
     .state('tab.main-game', {
       url: "/main/:gameId",
       views: {
-        'tab-main' :{
+        'tab-create' :{
           templateUrl: "templates/main-game.html",
           controller: 'GameCtrl'
         }
