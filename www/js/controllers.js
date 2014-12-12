@@ -188,6 +188,7 @@ angular.module('voto.controllers', [])
   //};
 
   $scope.selectPhoto = function(photo) {
+    console.log("SELECTED PHOTO: ", photo)
     $scope.selectedPhoto = photo;
   };
 

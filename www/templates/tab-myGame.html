@@ -4,6 +4,9 @@
   		<h1 align="center">"{{currentGame.title}}"</h1>
   	</div>    
     <div class="photos" ng-init="getGameData()">
+      <div class="selected" align="center" ng-if="selectedPhoto">
+        <image class="selectedPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{selectedPhoto.filename}}"/>
+      </div>
       <span class="submission" ng-repeat="photo in game.photos" ng-click="selectPhoto(photo)">
         <image class="submittedPhoto" ng-src="http://10.8.16.232:8000/media/square-200px/{{photo.filename}}"/>  
       </span>
