@@ -2,14 +2,58 @@ angular.module('voto.services', [])
 
 .factory('GamesFactory', function($location, $http) {
 
-  //Get all games that a user has created or joined
-  var getAllGamesForUser = function() {
+  //Get all games not user-created or not yet submitted to
+  var getAllGamesForUser = function(user) {
     //Emulator CAN connect to this IP
+    console.log("USER IS", user)
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/created",
+      method: "GET", 
+      //Change this to pull from $rootScope
+      params: {user_id: user.id}
+    })
+  };
+
+  //Get all games that a user has created or joined
+  var getAllGames = function() {
     return $http.get("http://10.8.16.232:8000/api/prompt/all");
   };
 
+  //Gets user info from server for a given username. Server creates if not
+  //found.
+  var getUserInfo = function(username) {
+    return $http({
+      url: "http://10.8.16.232:8000/api/prompt/user",
+      method: "GET", 
+      params: {user: username}
+    }).then(function(res) {return res.data;});
+  }
+
+  var getAllPhotosForGame = function(gameID) {
+    return $http({ 
+      url: "http://10.8.16.232:8000/", //TODO: fill out proper get request for gameID
+      method: "GET", 
+      params: {game: gameID}
+    }).then(function(res) {return res.data;});
+  }
+
+  var chooseWinner = function(photoID, gameID) {
+    return $http({ 
+      url: "http://10.8.16.232:8000/", //TODO: fill out proper post request for updating winner category in game model
+      method: "POST", 
+      params: {
+        game: gameID,
+        photo: photoID
+      }
+    }).then(function(res) {return res.data;});
+  }
+
   return {
     getAllGamesForUser: getAllGamesForUser,
+    getAllGames: getAllGames,
+    getAllPhotosForGame: getAllPhotosForGame,
+    getUserInfo: getUserInfo,
+    chooseWinner: chooseWinner,
     all: function() {
       return games;
     }
@@ -17,12 +61,10 @@ angular.module('voto.services', [])
 })
 
 .factory('Create', function($location) {
-  // Some fake testing data
   var createNewGame = function() {
-    console.log('post');
-    //$http.post    data: {username: '', prompt: '', private: true/false}
+    //$http.post data:{creator: '', prompt: ''}
   }
-
+  // Some fake testing data
   var games = [{
     prompt: 'Dogs',
     creator: 'Scruff McGruff'
@@ -43,4 +85,9 @@ angular.module('voto.services', [])
       return games;
     }
   }
+
+  // get: function(friendId) {
+  //   // Simple index lookup
+  //   return friends[friendId];
+  // }
 });

@@ -68,40 +68,42 @@ promptRouter.get('/created', function (req, res) {
           }
         }
       });
-
-      //var timeNow = Date.now();
-      //collection.forEach(function (prompt) {
-        //var isEnded = (prompt.get('endTime') - timeNow) < 0;
-        //var isVoteEnded = (prompt.get('votingEndTime') - timeNow) < 0;
-        //if (isVoteEnded || prompt.get('winner') !== undefined) {
-          //result['closed'].push(prompt.toJSON());
-        //} else {
-          //if (isEnded) {
-            //result['pending'].push(prompt.toJSON());
-          //} else {
-            //result['open'].push(prompt.toJSON());
-          //}
-        //}
-      //});
-
-
-
       res.json(result);
     });
 });
 
 //Should get all games that a user has submitted to
 promptRouter.get('/submitted', function (req, res) {
-  // 1. Query all photoos where user.id = userId
-  //
-  // 2. Query all prompt ids for those photos
-  // 3. Query all prompts where user.id === userId or id in promptIds
+  // 1. Query all photoos where user_id is userId, bringing in prompts data
+  // 2. Loop through those and only push ones without a winner_id set
+  var user_id = parseInt(req.query.user_id);
+  console.log("GET TO /SUBMITTED")
 
+  //Query Photos table for all of this user's submissions
+  models.Photo.fetchAll({
+    withRelated: ['winner', 'user', 'prompt']
+  })
+  .then(function (collection) {
+    var result = {
+      all: [],
+      open: [],
+      pending: [],
+      closed: []
+    };
 
- // get all prompts with photos
- // get all users for photos
- // filter prompts by promts where any of the photos haver a prompt.photos[i]user.id === userId
- // or prompt.user_id is userId
+    console.log("SUbMITTED ROUTE", collection)
+    //collection.forEach(function(photo) {
+      ////Push if it was created by user
+      //if (photo.get('user_id') === user_id) {
+        //result['all'].push(photo.toJSON());
+        ////Push to closed if there's a winner id
+        //if(photo.get('winner_id') !== undefined) {
+          //result['closed'].push(photo.toJSON());
+        //}
+      //}
+    //});
+    res.json(result);
+  });
 });
 
 //Gets all prompts
