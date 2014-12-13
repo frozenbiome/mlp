@@ -2,18 +2,36 @@
   <ion-content ng-controller="GameCtrl">
     <div class="padding">
       <h1 align="center" ng-init="getGameData()">"{{currentGame.title}}"</h1>
-      <div class="notLoser" ng-if="currentGame.user_id === user.id || currentGame.winner_id === user.id">
-        <h3 align="center" ng-if="currentGame.winner_id === user.id"> You Win! </h3>
+
+      <!-- If viewer is the Owner or Winner of the game -->
+      <div class="notLoser" ng-if="currentGame.user_id === user.id || game.winner.user_id === user.id">
+        <h3 align="center" ng-if="game.winner.user_id === user.id"> You Win! </h3>
         <h3 align="center" ng-if="currentGame.user_id === user.id"> You Chose </h3>
         <br/>
-        <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{currentGame.winner.filename}}"/>
+        <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{game.winner.filename}}"/>
         <br/>
         <h4 align="center"> Other Submissions </h4>
-        {{currentGame.user_id}}
         <span class="submission" ng-repeat="photo in game.photos">
           <image ng-if="photo.id !== currentGame.winner.id" class="submittedPhoto" ng-src="http://10.8.16.232:8000/media/square-200px/{{photo.filename}}"/>
         </span>
       </div>  
+
+      <!-- If Viewer lost the game -->
+      <div class="Loser" ng-if="currentGame.user_id !== user.id && game.winner.user_id !== user.id">
+      <h3 align="center"> You Lose :( </h3>
+      <br/>
+      <h4 align="center"> Winner </h3>
+      <br/>
+      <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{game.winner.filename}}"/>
+      <br/>
+      <h4 align="center"> Your Submission </h3>
+      <br/>
+      <image class="yourSubmission" ng-src="http://10.8.16.232:8000/media/square-500px/{{userSubmission.filename}}"/>
+      <br/>
+      <h4 align="center"> Other Submissions </h4>
+      <span class="submission" ng-repeat="photo in game.photos">
+        <image ng-if="photo.id !== game.winner.id && photo.id !== userSubmission.id" class="submittedPhoto" ng-src="http://10.8.16.232:8000/media/square-200px/{{photo.filename}}"/>
+      </span>
     </div>
   </ion-content>
 </ion-view>
