@@ -2,24 +2,37 @@
   <ion-content ng-controller="GameCtrl">
     <div class="padding">
       <h1 align="center" ng-init="getGameData()">"{{currentGame.title}}"</h1>
+      <div class="notLoser" ng-if="currentGame.user_id === user.id || currentGame.winner_id === user.id">
+        <h3 align="center" ng-if="currentGame.winner_id === user.id"> You Win! </h3>
+        <h3 align="center" ng-if="currentGame.user_id === user.id"> You Chose </h3>
+        <br/>
+        <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{currentGame.winner.filename}}"/>
+        <br/>
+        <h4 align="center"> Other Submissions </h4>
+        {{currentGame.user_id}}
+        <span class="submission" ng-repeat="photo in game.photos">
+          <image ng-if="photo.id !== currentGame.winner.id" class="submittedPhoto" ng-src="http://10.8.16.232:8000/media/square-200px/{{photo.filename}}"/>
+        </span>
+      </div>  
+    </div>
+  </ion-content>
+</ion-view>
+     
 
-      <!-- Camera/Upload View and Re -->
-      <div class="ifPending" >
-        <h3 align="center"> Your Submission </h3>
-        <image class="userSubmission" ng-src="http://10.8.16.232:8000/media/square-500px/{{userSubmission.filename}}"/>
+
+<!--  -->
+
+
+
+     <!--  <div ng-if="currentGame.winner_id && currentGame.winner !== userSubmission">
+        <h3> You Lose </h3>
       </div>
+
+      <h3 align="center"> Your Submission </h3>
+      <image class="userSubmission" ng-src="http://10.8.16.232:8000/media/square-500px/{{userSubmission.filename}}"/>
 
     </div>
     
-    <div class="ifCompleted" ng-if="!!{{rootScope.currentGame.winner_id}}">
-      <p ng-if="{{currentGame.winner}}&&{{currentGame.winner}} !== {{userSubmission}}"></p>
-      <h3> Winner! </h3>
-      <br/>
-      <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{currentGame.winner.filename}}"/>
-      <br/>
-      <h4> Other Submissions </h4>
-      <span class="submission" ng-repeat="photo in photos" ng-click="selectPhoto()"></span>
-    </div>
-
-  </ion-content>
-</ion-view>
+    <div class="ifCompleted" ng-if="currentGame.winner_id">
+       -->
+    
