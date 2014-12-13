@@ -9,7 +9,7 @@
       </div>
       <div class="padding">
         <span class="submission" ng-repeat="photo in game.photos" ng-click="selectPhoto(photo)">
-          <image class="submittedPhoto" ng-src="http://10.8.16.232:8000/media/square-200px/{{photo.filename}}"/>
+          <image class="submittedPhoto active" ng-class="{'greyed-out': selectedPhoto.id === photo.id}"ng-src="http://10.8.16.232:8000/media/square-200px/{{photo.filename}}"/>
         </span>
       </div>
       <div class="padding">
