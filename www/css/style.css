@@ -8,3 +8,7 @@
   padding: 1px 0;
   margin-left:3px;
 }
+.selectedPhoto {
+  width: 100%;
+  max-height:  300px;
+}
