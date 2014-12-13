@@ -18,12 +18,14 @@
 
       <!-- If Viewer lost the game -->
       <div class="Loser" ng-if="currentGame.user_id !== user.id && game.winner.user_id !== user.id">
-      <h3 align="center"> You Lose :( </h3>
-      <br/>
-      <h4 align="center"> Winner </h3>
-      <br/>
-      <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{game.winner.filename}}"/>
-      <br/>
+      <div ng-if="game.winner_id">
+        <h3 align="center"> You Lose :( </h3>
+        <br/>
+        <h4 align="center"> Winner </h3>
+        <br/>
+        <image class="winningPhoto" ng-src="http://10.8.16.232:8000/media/square-500px/{{game.winner.filename}}"/>
+        <br/>
+      </div>
       <h4 align="center"> Your Submission </h3>
       <br/>
       <image class="yourSubmission" ng-src="http://10.8.16.232:8000/media/square-500px/{{userSubmission.filename}}"/>
