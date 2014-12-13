@@ -101,7 +101,7 @@ angular.module('voto.controllers', [])
 .controller('GameCtrl', function($scope, $rootScope, $http, GamesFactory, $cordovaCamera, $ionicLoading, $ionicViewService) {
   $scope.takePicture = function() {
     var options = {
-      quality: 75,
+      quality: 30,
       destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
       allowEdit: true,
@@ -126,7 +126,7 @@ angular.module('voto.controllers', [])
     var options = {
       targetWidth: 300,
       targetHeight: 300,
-      quality: 50,
+      quality: 30,
       destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY
     };
